@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->bigIncrements('id');
             $table->string('nip',16)->comment('Nomor Induk Pegawai')->unique();
             $table->string('glr_dpn')->comment('Gelar Depan')->nullable();
             $table->string('glr_blk')->comment('Gelar Belakang')->nullable();
