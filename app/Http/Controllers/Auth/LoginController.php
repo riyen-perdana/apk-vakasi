@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -52,6 +54,24 @@ class LoginController extends Controller
           'pageConfigs' => $pageConfigs
       ]);
     }
+
+    // public function login(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'nip' => ['required'],
+    //         'password' => ['required'],
+    //     ]);
+ 
+    //     if (Auth::attempt($credentials)) {
+    //         $request->session()->regenerate();
+ 
+    //         return redirect()->intended('/');
+    //     }
+ 
+    //     return back()->withErrors([
+    //         'nip' => 'The provided credentials do not match our records.',
+    //     ]);
+    // }
 
     /**
      * Log the user out of the application.

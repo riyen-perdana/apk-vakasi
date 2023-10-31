@@ -56,18 +56,6 @@ $(window).on('load', function () {
   var browserStateWarningChart;
   var goalOverviewChart;
 
-  // On load Toast
-  setTimeout(function () {
-    toastr['success'](
-      'You have successfully logged in to Vuexy. Now you can start to explore!',
-      '👋 Welcome John Doe!',
-      {
-        closeButton: true,
-        tapToDismiss: false
-      }
-    );
-  }, 2000);
-
   //------------ Statistics Bar Chart ------------
   //----------------------------------------------
   statisticsOrderChartOptions = {

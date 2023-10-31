@@ -15,7 +15,7 @@ use App\Http\Controllers\LanguageController;
 Auth::routes(['verify' => true]);
 
 // Main Page Route
-Route::get('/', 'DashboardController@dashboardEcommerce')->name('dashboard-ecommerce');
+Route::get('/', 'DashboardController@dashboardEcommerce')->name('dashboard-ecommerce')->middleware('auth');
 
 /* Route Dashboards */
 Route::group(['prefix' => 'dashboard'], function () {
@@ -176,6 +176,7 @@ Route::group(['prefix' => 'page'], function () {
 });
 /* Route Pages */
 Route::get('/error', 'MiscellaneousController@error')->name('error');
+Route::get('/405', 'MiscellaneousController@methodNotAllowed')->name('405');
 
 /* Route Authentication Pages */
 Route::group(['prefix' => 'auth'], function () {

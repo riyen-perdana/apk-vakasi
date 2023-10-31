@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nip',16)->comment('Nomor Induk Pegawai')->unique();
+            $table->string('nip',18)->comment('Nomor Induk Pegawai')->unique();
             $table->string('glr_dpn')->comment('Gelar Depan')->nullable();
             $table->string('glr_blk')->comment('Gelar Belakang')->nullable();
             $table->string('name');
@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('is_aktif',['Y','N'])->comment('Apakah Aktif ?')->default('Y');
+            $table->string('avatar')->comment('Foto Pengguna')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

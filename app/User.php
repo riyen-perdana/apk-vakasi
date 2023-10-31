@@ -20,7 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
   
   protected $fillable = [
-      'nip','glr_dpn','glr_blk','name','email', 'password',
+      'nip','glr_dpn','glr_blk','name','email', 'password','avatar',
   ];
 
   /**
@@ -68,13 +68,13 @@ class User extends Authenticatable implements MustVerifyEmail
    */
   public function getNamaPenggunaAttribute()
   {
-    if ($this->glr_dpn == null && strlen(trim($this->glr_dpn) == 0)) 
+    if ($this->glr_dpn == null || strlen(trim($this->glr_dpn) == 0)) 
     {
       return "{$this->name}.{$this->glr_blk}";
-    } elseif ($this->glr_blk == null && strlen(trim($this->glr_blk) == 0))
+    } elseif ($this->glr_blk == null || strlen(trim($this->glr_blk) == 0))
     {
       return "{$this->glr_dpn}.{$this->name}";
-    } elseif (($this->glr_dpn != null && strlen(trim($this->glr_dpn) != 0)) && ($this->glr_blk != null && strlen(trim($this->glr_blk) != 0))) 
+    } elseif (($this->glr_dpn != null || strlen(trim($this->glr_dpn) != 0)) && ($this->glr_blk != null || strlen(trim($this->glr_blk) != 0))) 
     {
       return "{$this->glr_dpn}.{$this->name}.{$this->glr_blk}";
     } else 

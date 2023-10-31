@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -50,6 +51,8 @@ class Handler extends ExceptionHandler
         if ($exception instanceof NotFoundHttpException) {
             //$pageConfigs = ['blankPage' => true];
             return redirect()->route('error');
+        } else if ($exception instanceof MethodNotAllowedHttpException) {
+            return redirect()->route('405');
         }
         return parent::render($request, $exception);
     }

@@ -39,4 +39,16 @@ class MiscellaneousController extends Controller
       'pageConfigs' => $pageConfigs
     ]);
   }
+
+  // 405
+  public function methodNotAllowed()
+  {
+    $pageConfigs = ['blankPage' => true];
+
+    return view('/content/miscellaneous/405', [
+      'pageConfigs' => $pageConfigs
+    ]);
+  }
+
+
 }

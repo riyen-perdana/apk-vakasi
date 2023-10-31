@@ -28,7 +28,7 @@ $configData = Helper::applClasses();
       @foreach($menuData[0]->menu as $menu)
       @if(isset($menu->navheader))
       <li class="navigation-header">
-        <span>{{ __('locale.'.$menu->navheader) }}</span>
+        <span>{{ $menu->navheader }}</span>
         <i data-feather="more-horizontal"></i>
       </li>
       @else
