@@ -26,6 +26,37 @@
       "navheader": "Master Data",
       "slug": ""
     },
+    {
+      "name": "Otorisasi",
+      "icon":"lock",
+      "slug":"",
+      "submenu":[
+        {
+          "url":"apps/permissions",
+          "name":"Permission",
+          "icon":"user-x",
+          "slug":"apps-permission"
+        },
+        {
+          "url":"apps/roles",
+          "name":"Role",
+          "icon":"user-check",
+          "slug":"apps-roles"
+        }
+      ]
+    },
+    {
+      "url": "dashboard/analytics",
+      "name": "Pengguna",
+      "icon": "users",
+      "slug": "dashboard-pengguna"
+    },
+    {
+      "url": "dashboard/analytics",
+      "name": "Dosen LB",
+      "icon": "folder",
+      "slug": "dashboard-dosen-lb"
+    },
 
     {
       "navheader": "Apps & Pages",

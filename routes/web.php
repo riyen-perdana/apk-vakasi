@@ -16,6 +16,13 @@ Auth::routes(['verify' => true]);
 
 // Main Page Route
 Route::get('/', 'DashboardController@dashboardEcommerce')->name('dashboard-ecommerce')->middleware('auth');
+Route::group(['prefix'=>'apps','middleware'=>'auth'], function () {
+  Route::get('permissions', [App\Http\Controllers\PermissionController::class, 'index'])->name('apps-permission');
+  Route::get('permission-data',[\App\Http\Controllers\PermissionController::class, 'getDataPermission'])->name('apps-permission-data');
+  Route::get('roles', [App\Http\Controllers\RoleController::class, 'index'])->name('apps-roles');
+  Route::get('role-data',[\App\Http\Controllers\RoleController::class, 'getDataRole'])->name('apps-role-data');
+  
+});
 
 /* Route Dashboards */
 Route::group(['prefix' => 'dashboard'], function () {
