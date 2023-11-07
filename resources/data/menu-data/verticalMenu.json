@@ -46,14 +46,14 @@
       ]
     },
     {
-      "url": "dashboard/analytics",
+      "url": "apps/pengguna",
       "name": "Pengguna",
       "icon": "users",
-      "slug": "dashboard-pengguna"
+      "slug": "apps-pengguna"
     },
     {
-      "url": "dashboard/analytics",
-      "name": "Dosen LB",
+      "url": "apps/dosen",
+      "name": "Dosen Luar Biasa",
       "icon": "folder",
       "slug": "dashboard-dosen-lb"
     },

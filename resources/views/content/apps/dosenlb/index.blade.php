@@ -1,7 +1,6 @@
-
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Role')
+@section('title', 'Dosen Luar Biasa')
 
 @section('vendor-style')
   {{-- vendor css files --}}
@@ -24,10 +23,10 @@
 @section('content')
 <div class="row">
   <div class="col-12">
-    <p style="font-weight: 500">Halaman Manajemen Data Role Meliputi Buat, Ubah, Hapus dan Lihat Role Pengguna Aplikasi Pembayaran Vakasi Dosen</a></p>
+    <p style="font-weight: 500">Halaman Manajemen Data Dosen Luar Biasa Meliputi Buat, Ubah, Hapus dan Lihat Dosen Luar Biasa {{ config('custom.app_satker')}}</a></p>
   </div>
 </div>
-<!-- Basic table -->
+
 <section id="basic-datatable">
   <div class="row">
     <div class="col-12">
@@ -36,7 +35,7 @@
           <div class="p-2 bd-highlight">
             <button
               data-toggle="modal"
-              data-target="#role" 
+              data-target="#dosen" 
               type="button" 
               class="btn btn-primary" 
               onclick="add()">
@@ -51,13 +50,15 @@
         </div>
       </div>
       <div class="card">
-        <table class="datatables-basic table" style="width: 100% !important; vertical-align:top">
+        <table class="datatables-basic table">
           <thead>
             <tr>
               <th>No</th>
-              <th>Role</th>
-              <th>Permission</th>
-              <th>Actions</th>
+              <th>NIDN/NUP</th>
+              <th>Nama</th>
+              <th>Pangkat</th>
+              <th>Status</th>
+              <th>Action</th>
             </tr>
           </thead>
         </table>
@@ -66,10 +67,9 @@
   </div>
 </section>
 
-@include('content.apps.otorisasi.role.modal-form')
-<!--/ Basic table -->
-@endsection
+@include('content.apps.dosenlb.modal-form')
 
+@endsection
 
 @section('vendor-script')
   {{-- vendor files --}}
@@ -90,8 +90,9 @@
   <script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/extensions/sweetalert2.all.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/extensions/polyfill.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/forms/cleave/cleave.min.js')) }}"></script>
 @endsection
 @section('page-script')
   {{-- Page js files --}}
-  <script src="{{ asset(mix('js/scripts/pages/apps-role.js')) }}"></script>
+  <script src="{{ asset(mix('js/scripts/pages/apps-dosen.js')) }}"></script>
 @endsection

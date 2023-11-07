@@ -118,6 +118,8 @@
     "/js/scripts/pages/app-user-edit.js": "/js/scripts/pages/app-user-edit.js",
     "/js/scripts/pages/app-user-list.js": "/js/scripts/pages/app-user-list.js",
     "/js/scripts/pages/app-user-view.js": "/js/scripts/pages/app-user-view.js",
+    "/js/scripts/pages/apps-dosen.js": "/js/scripts/pages/apps-dosen.js",
+    "/js/scripts/pages/apps-pengguna.js": "/js/scripts/pages/apps-pengguna.js",
     "/js/scripts/pages/apps-permission.js": "/js/scripts/pages/apps-permission.js",
     "/js/scripts/pages/apps-role.js": "/js/scripts/pages/apps-role.js",
     "/js/scripts/pages/dashboard-analytics.js": "/js/scripts/pages/dashboard-analytics.js",

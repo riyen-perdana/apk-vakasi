@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -19,6 +20,7 @@ class UserSeeder extends Seeder
     {
         $user = User::create([
             'nip' => '198111162011011010',
+            'code_red' => str::random(30),
             'name' => 'Riyen Perdana',
             'glr_blk' => 'ST',
             'email' => 'riyen_perdana@uin-suska.ac.id',

@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -20,7 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
   
   protected $fillable = [
-      'nip','glr_dpn','glr_blk','name','email', 'password','avatar',
+      'nip','code_red','glr_dpn','glr_blk','name','email', 'password','avatar',
   ];
 
   /**
@@ -31,6 +32,13 @@ class User extends Authenticatable implements MustVerifyEmail
   protected $hidden = [
     'password', 'remember_token',
   ];
+
+  /**
+   * The Custom attributes that should add to JSON response.
+   *
+   * @var array
+   */
+  protected $appends = ['nama_pengguna'];
 
   /**
    * The attributes that should be cast to native types.

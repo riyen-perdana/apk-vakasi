@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('code_red',30)->comment('Hashing Code')->unique();
             $table->string('nip',18)->comment('Nomor Induk Pegawai')->unique();
             $table->string('glr_dpn')->comment('Gelar Depan')->nullable();
             $table->string('glr_blk')->comment('Gelar Belakang')->nullable();

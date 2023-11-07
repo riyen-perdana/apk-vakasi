@@ -17,18 +17,41 @@ Auth::routes(['verify' => true]);
 // Main Page Route
 Route::get('/', 'DashboardController@dashboardEcommerce')->name('dashboard-ecommerce')->middleware('auth');
 Route::group(['prefix'=>'apps','middleware'=>'auth'], function () {
+  
+  //Permission Route
   Route::get('permissions', [App\Http\Controllers\PermissionController::class, 'index'])->name('apps-permission');
   Route::get('permission-data',[\App\Http\Controllers\PermissionController::class, 'getDataPermission'])->name('apps-permission-data');
+  //End Permission Route
+  
+  //Roles Route
   Route::get('roles', [App\Http\Controllers\RoleController::class, 'index'])->name('apps-roles');
   Route::get('role-data',[\App\Http\Controllers\RoleController::class, 'getDataRole'])->name('apps-role-data');
-  
+  Route::post('roles',[\App\Http\Controllers\RoleController::class, 'store'])->name('apps-role-store');
+  Route::delete('roles/{id}',[\App\Http\Controllers\RoleController::class, 'destroy'])->name('apps-role-destroy');
+  Route::get('roles/{id}/edit',[\App\Http\Controllers\RoleController::class, 'edit'])->name('apps-role-edit');
+  Route::patch('roles/{id}',[\App\Http\Controllers\RoleController::class, 'update'])->name('apps-role-update');
+  //End Roles Route
+
+  //Pengguna Route
+  Route::get('pengguna', [App\Http\Controllers\PenggunaController::class, 'index'])->name('apps-pengguna');
+  Route::get('pengguna-data',[\App\Http\Controllers\PenggunaController::class, 'getDataPengguna'])->name('apps-pengguna-data');
+  Route::post('pengguna',[\App\Http\Controllers\PenggunaController::class, 'store'])->name('apps-pengguna-store');
+  Route::get('pengguna/{id}/edit',[\App\Http\Controllers\PenggunaController::class, 'edit'])->name('apps-pengguna-edit');
+  Route::delete('pengguna/{id}',[\App\Http\Controllers\PenggunaController::class, 'destroy'])->name('apps-pengguna-destroy');
+  Route::patch('pengguna/{id}',[\App\Http\Controllers\PenggunaController::class, 'update'])->name('apps-pengguna-update');
+
+  //Dosen Luar Biasa
+  Route::get('dosen', [App\Http\Controllers\DosenlbController::class, 'index'])->name('apps-dosen');
+  Route::post('dosen',[\App\Http\Controllers\DosenlbController::class, 'store'])->name('apps-dosen-store');
+
+
 });
 
 /* Route Dashboards */
-Route::group(['prefix' => 'dashboard'], function () {
-  Route::get('analytics', 'DashboardController@dashboardAnalytics')->name('dashboard-analytics');
-  Route::get('ecommerce', 'DashboardController@dashboardEcommerce')->name('dashboard-ecommerce');
-});
+// Route::group(['prefix' => 'dashboard'], function () {
+//   Route::get('analytics', 'DashboardController@dashboardAnalytics')->name('dashboard-analytics');
+//   Route::get('ecommerce', 'DashboardController@dashboardEcommerce')->name('dashboard-ecommerce');
+// });
 /* Route Dashboards */
 
 /* Route Apps */
@@ -168,9 +191,9 @@ Route::group(['prefix' => 'page'], function () {
   Route::get('account-settings', 'PagesController@account_settings')->name('page-account-settings');
   Route::get('profile', 'PagesController@profile')->name('page-profile');
   Route::get('faq', 'PagesController@faq')->name('page-faq');
-  Route::get('knowledge-base', 'PagesController@knowledge_base')->name('page-knowledge-base');
+  // Route::get('knowledge-base', 'PagesController@knowledge_base')->name('page-knowledge-base');
   Route::get('knowledge-base/category', 'PagesController@kb_category')->name('page-knowledge-base');
-  Route::get('knowledge-base/category/question', 'PagesController@kb_question')->name('page-knowledge-base');
+  // Route::get('knowledge-base/category/question', 'PagesController@kb_question')->name('page-knowledge-base');
   Route::get('pricing', 'PagesController@pricing')->name('page-pricing');
   Route::get('blog/list', 'PagesController@blog_list')->name('page-blog-list');
   Route::get('blog/detail', 'PagesController@blog_detail')->name('page-blog-detail');
