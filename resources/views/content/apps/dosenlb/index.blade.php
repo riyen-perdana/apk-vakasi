@@ -57,6 +57,8 @@
               <th>NIDN/NUP</th>
               <th>Nama</th>
               <th>Pangkat</th>
+              <th>Golongan</th>
+              <th>Fungsional</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -68,6 +70,7 @@
 </section>
 
 @include('content.apps.dosenlb.modal-form')
+@include('content.apps.dosenlb.detail')
 
 @endsection
 

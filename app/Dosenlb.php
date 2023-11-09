@@ -24,6 +24,13 @@ class Dosenlb extends Model
         'fungsional'
     ];
 
+  /**
+   * The Custom attributes that should add to JSON response.
+   *
+   * @var array
+   */
+  protected $appends = ['nama_dosen'];
+
     public static function boot()
     {
         parent::boot();
@@ -34,12 +41,12 @@ class Dosenlb extends Model
 
     public function pangkat()
     {
-        return $this->belongsTo('App\Pangkat','pangkat');
+        return $this->belongsTo('App\Pangkat','pangkat','id');
     }
 
     public function fungsional()
     {
-        return $this->belongsTo('App\Fungsional','fungsional');
+        return $this->belongsTo('App\Fungsional','fungsional','id');
     }
 
     public function setNameNoRekAttribute($value)
@@ -47,12 +54,17 @@ class Dosenlb extends Model
         $this->attributes['name_no_rek'] = ucwords($value);
     }
 
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = ucwords($value);
+    }
+
    /**
    * Get Nama Full Dosen Luar Biasa
    * @return void
    * 
    */
-  public function getNamaPenggunaAttribute()
+  public function getNamaDosenAttribute()
   {
     if ($this->glr_dpn == null || strlen(trim($this->glr_dpn) == 0)) 
     {

@@ -43,7 +43,11 @@ Route::group(['prefix'=>'apps','middleware'=>'auth'], function () {
   //Dosen Luar Biasa
   Route::get('dosen', [App\Http\Controllers\DosenlbController::class, 'index'])->name('apps-dosen');
   Route::post('dosen',[\App\Http\Controllers\DosenlbController::class, 'store'])->name('apps-dosen-store');
-
+  Route::get('dosen-data',[\App\Http\Controllers\DosenlbController::class, 'getDataDosen'])->name('apps-dosen-data');
+  Route::get('dosen/{id}',[\App\Http\Controllers\DosenlbController::class, 'show'])->name('apps-dosen-show');
+  Route::delete('dosen/{id}',[\App\Http\Controllers\DosenlbController::class, 'destroy'])->name('apps-dosen-destroy');
+  Route::get('dosen/{id}/edit',[\App\Http\Controllers\DosenlbController::class, 'edit'])->name('apps-dosen-edit');
+  Route::patch('dosen/{id}',[\App\Http\Controllers\DosenlbController::class, 'update'])->name('apps-dosen-update');
 
 });
 

@@ -21,4 +21,9 @@ class Pangkat extends Model
             $model->id = (string) Str::uuid();
         });
     }
+
+    public function dosen()
+    {
+        return $this->hasMany('App\Dosen','pangkat');
+    }
 }

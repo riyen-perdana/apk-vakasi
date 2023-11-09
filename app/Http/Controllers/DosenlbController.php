@@ -50,7 +50,7 @@ class DosenlbController extends Controller
                 $message = [
                     'txtNUPNIDN.required'      => 'Kolom NUP/NIDN Harus Diisi',
                     'txtNUPNIDN.numeric'       => 'Kolom NUP/NIDN Harus Angka',
-                    'txtNUPNIDN.length'        => 'Panjang Digit NUP/NIDN 12 Angka',
+                    'txtNUPNIDN.digits'        => 'Panjang Digit NUP/NIDN 10 Angka',
                     'txtNUPNIDN.inique'        => 'NUP/NIDN Sudah Ada, Isikan Yang Lain',
                     'txtNamaDsnLb.required'    => 'Kolom Nama Dosen Luar Biasa Harus Diisi',
                     'txtNPWP.required'         => 'Kolom Nomor Pokok Wajib Pajak Harus Diisi',
@@ -65,9 +65,9 @@ class DosenlbController extends Controller
                 ];
         
                 $validator =  Validator::make($request->all(), [
-                    'txtNUPNIDN'    => 'required|numeric|length:12|unique:dosenlb,nup_nidn',
+                    'txtNUPNIDN'    => 'required|numeric|digits:10|unique:dosenlb,nup_nidn',
                     'txtNamaDsnLb'  => 'required',
-                    'txtNPWP'       => 'required|regex:/^([\d]{2})[.]([\d]{3})[.]([\d]{3})[.][\d][-]([\d]{3})[.]([\d]{3})$/g',
+                    'txtNPWP'       => 'required|regex:/^([\d]{2})[.]([\d]{3})[.]([\d]{3})[.][\d][-]([\d]{3})[.]([\d]{3})$/',
                     'txtNoRek'      => 'required|numeric|unique:dosenlb,no_rek',
                     'txtNamaNoRek'  => 'required',
                     'optPangkat'    => 'required',
@@ -99,8 +99,9 @@ class DosenlbController extends Controller
                 return response()->json($query,200);
 
             } catch (\Throwable $th) {
-                DB::rollBack();
-                return response()->json($th,500);
+                // DB::rollBack();
+                // return response()->json($th,500);
+                return $th;
             }
         }
 
@@ -115,7 +116,21 @@ class DosenlbController extends Controller
      */
     public function show($id)
     {
-        //
+        if (request()->ajax()) {
+
+            try {
+                DB::beginTransaction();
+                $query = Dosenlb::with(['pangkat','fungsional'])->where('id','=',$id)->first();
+                DB::commit();
+                return $query;
+            } catch (\Throwable $th) {
+                DB::rollback();
+                return response()->json($th,500);
+            }
+
+        }
+
+        return redirect()->route('405');
     }
 
     /**
@@ -126,7 +141,10 @@ class DosenlbController extends Controller
      */
     public function edit($id)
     {
-        //
+        DB::beginTransaction();
+        $query = Dosenlb::where('id','=',$id)->first();
+        DB::commit();
+        echo json_encode($query);
     }
 
     /**
@@ -138,7 +156,70 @@ class DosenlbController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(request()->ajax()) {
+
+            try {
+                
+                $message = [
+                    'txtNUPNIDN.required'      => 'Kolom NUP/NIDN Harus Diisi',
+                    'txtNUPNIDN.numeric'       => 'Kolom NUP/NIDN Harus Angka',
+                    'txtNUPNIDN.digits'        => 'Panjang Digit NUP/NIDN 10 Angka',
+                    'txtNUPNIDN.inique'        => 'NUP/NIDN Sudah Ada, Isikan Yang Lain',
+                    'txtNamaDsnLb.required'    => 'Kolom Nama Dosen Luar Biasa Harus Diisi',
+                    'txtNPWP.required'         => 'Kolom Nomor Pokok Wajib Pajak Harus Diisi',
+                    'txtNPWP.regex'            => 'Format Kolom Nomor Pokok Wajib Pajak Salah',
+                    'txtNoRek.required'        => 'Kolom Nomor Rekening Bank Harus Diisi',
+                    'txtNoRek.numeric'         => 'Kolom Nomor Rekening Bank Harus Angka',
+                    'txtNoRek.unique'          => 'Kolom Nomor Rekening Sudah Ada, Isikan Yang Lain',
+                    'txtNamaNoRek.required'    => 'Kolom Nama Sesuai Nomor Rekening Harus Diisi',
+                    'optPangkat.required'      => 'Kolom Pangkat dan Golongan Harus Dipilih',
+                    'optJafung.required'       => 'Kolom Jabatan Fungsional Harus Dipilih',
+                    'optStatus.required'       => 'Kolom Status Harus Dipilih',
+                ];
+        
+                $validator =  Validator::make($request->all(), [
+                    'txtNUPNIDN'    => 'required|numeric|digits:10|unique:dosenlb,nup_nidn,'.$id.',id',
+                    'txtNamaDsnLb'  => 'required',
+                    'txtNPWP'       => 'required|regex:/^([\d]{2})[.]([\d]{3})[.]([\d]{3})[.][\d][-]([\d]{3})[.]([\d]{3})$/',
+                    'txtNoRek'      => 'required|numeric|unique:dosenlb,no_rek,'.$id.',id',
+                    'txtNamaNoRek'  => 'required',
+                    'optPangkat'    => 'required',
+                    'optJafung'     => 'required',
+                    'optStatus'     => 'required'
+                ],$message);
+        
+                if ($validator->fails()) {
+                    $pesan = $validator->messages();
+                    return response()->json($pesan,500);
+                }
+
+                DB::beginTransaction();
+                $query = Dosenlb::findOrFail($id);
+                $query->nup_nidn        = $request['txtNUPNIDN'];
+                $query->glr_dpn         = $request['txtGlrDpn'];
+                $query->glr_blk         = $request['txtGlrBlk'];
+                $query->name            = $request['txtNamaDsnLb'];
+                $query->npwp            = $request['txtNPWP'];
+                $query->no_rek          = $request['txtNoRek'];
+                $query->name_no_rek     = $request['txtNamaNoRek'];
+                $query->pangkat         = $request['optPangkat'];
+                $query->fungsional      = $request['optJafung'];
+                $query->is_aktif        = $request['optStatus'];
+                $query->update();
+
+                DB::commit();
+
+                return response()->json($query,200);
+
+            } catch (\Throwable $th) {
+                DB::rollBack();
+                return $th;
+                // return response()->json($th,500);
+                //return response()->json($th,500);
+            }
+        }
+
+        return redirect()->route('405');
     }
 
     /**
@@ -149,6 +230,56 @@ class DosenlbController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(request()->ajax()) {
+
+            try {
+
+                DB::beginTransaction();
+                $query = Dosenlb::where('id','=',$id)->first();
+
+                if($query) {
+                    $query->delete();
+                    DB::commit();
+                    return response()->json($query,200);
+                }
+
+                DB::commit();
+                return response()->json($query,500);
+                
+                
+            } catch (\Throwable $th) {
+                DB::rollBack();
+                return response()->json($th,500);
+            }
+        }
+
+        return redirect()->route('405');
+    }
+
+    /**
+     * Fungsi Ambil Data Dosen Luar Biasa
+     * @param void
+     * @return \Illuminate\Http\Response
+     */
+    public function getDataDosen()
+    {
+        if (request()->ajax()) {
+
+            try {
+
+                DB::beginTransaction();
+                $query = Dosenlb::with(['pangkat','fungsional'])->get();
+                $data = ['data'=>$query];
+                DB::commit();
+                
+                return response()->json($data,200);
+
+            } catch (\Throwable $th) {
+                DB::rollBack();
+                return response()->json($th,500);
+            }
+        }
+
+        return redirect()->route('405');
     }
 }
