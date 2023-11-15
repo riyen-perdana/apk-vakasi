@@ -6,15 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Fungsional extends Model
+class Setting extends Model
 {
     use HasFactory;
-    protected $table = 'fungsional';
-    public $incrementing = 'false';
+    protected $table = 'setting';
     public $keyType = 'string';
+    public $incrementing = 'false';
+
     protected $fillable = [
-        'jbtn_fungsional',
-        'amprah'
+        'koreksi',
+        'soal',
+        'mengawas',
+        'pph_21',
+        'is_aktif'
     ];
 
     public static function boot()
@@ -24,9 +28,5 @@ class Fungsional extends Model
             $model->id = (string) Str::uuid();
         });
     }
-
-    public function dosen()
-    {
-        return $this->hasMany('App\Dosen','fungsional');
-    }
 }
+

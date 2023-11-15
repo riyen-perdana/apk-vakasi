@@ -6,6 +6,7 @@ use Database\Seeders\RolesTableSeeder;
 use Database\Seeders\PermissionsTableSeeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\FungsionalSeeder;
+use Database\Seeders\PerangkatSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(PangkatSeeder::class);
         $this->call(FungsionalSeeder::class);
+        $this->call(PerangkatSeeder::class);
     }
 }

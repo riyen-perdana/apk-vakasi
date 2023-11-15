@@ -19,7 +19,7 @@ class CreatePerangkatsTable extends Migration
             $table->string('nama')->comment('Nama perangkat');
             $table->string('glr_dpn')->comment('Gelar Depan Perangkat')->nullable();
             $table->string('glr_blk')->comment('Gelar perangkat')->nullable();
-            $table->enum('is_jabatan',['Dekan','Bendahara Pengeluaran','Pejabat Pembuat Komitmen','BPP Rupiah Murni'])->comment('Jabatan Perangkat')->nullable();
+            $table->enum('is_jabatan',['Dekan','Bendahara Pengeluaran','Pejabat Pembuat Komitmen','BPP Rupiah Murni', 'PPK RM'])->comment('Jabatan Perangkat')->nullable();
             $table->enum('is_plt',['Y','N'])->comment('Apakah Status Perangkat Plt ?')->nullable();
             $table->enum('is_aktif',['Y','N'])->comment('Apakah Status Perangkat Aktif ?')->nullable();
             $table->date('awal_jabatan')->comment('Awal Perangkat Menjabat');

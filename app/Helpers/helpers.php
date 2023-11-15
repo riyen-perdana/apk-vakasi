@@ -160,4 +160,12 @@ class Helper
             }
         }
     }
+
+    public static function rupiah($value)
+    {
+        if ($value !=NULL) {
+            return "Rp. " . number_format($value,0,',','.');   
+        }        
+    }
+
 }

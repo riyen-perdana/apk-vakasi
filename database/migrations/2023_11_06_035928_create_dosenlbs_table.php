@@ -25,7 +25,6 @@ class CreateDosenlbsTable extends Migration
             $table->uuid('pangkat')->comment('ID Pangkat Dosen');
             $table->uuid('fungsional')->comment('ID Fungsional Dosen');
             $table->enum('is_aktif',['Y','N'])->comment('Apakah Dosen Aktif')->default('Y');
-            $table->string('no_telp')->comment('Nomor HP atau Telepon Dosen')->nullable();
             $table->timestamps();
         });
     }

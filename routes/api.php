@@ -30,3 +30,5 @@ Route::group([
     Route::get('user', 'AuthController@user');
   });
 });
+
+Route::get('semester-aktif',[\App\Http\Controllers\Api\ApiController::class, 'getSemesterAktif'])->name('api-get-semester-aktif');

@@ -31,6 +31,10 @@ class Perangkat extends Model
     * @var array
     */
     protected $appends = ['nama_perangkat'];
+    
+    protected $cast = [
+        'is_jabatan' => App\Enums::class
+    ];
 
     public static function boot()
     {
@@ -54,16 +58,16 @@ class Perangkat extends Model
     {
         if ($this->glr_dpn == null || strlen(trim($this->glr_dpn) == 0)) 
       	{
-        	return "{$this->name}.{$this->glr_blk}";
+        	return "{$this->nama}.{$this->glr_blk}";
       	} elseif ($this->glr_blk == null || strlen(trim($this->glr_blk) == 0))
       	{
-        	return "{$this->glr_dpn}.{$this->name}";
+        	return "{$this->glr_dpn}.{$this->nama}";
       	} elseif (($this->glr_dpn != null || strlen(trim($this->glr_dpn) != 0)) && ($this->glr_blk != null || strlen(trim($this->glr_blk) != 0))) 
       	{
-        	return "{$this->glr_dpn}.{$this->name}.{$this->glr_blk}";
+        	return "{$this->glr_dpn}.{$this->nama}.{$this->glr_blk}";
       	} else 
       	{
-        	return "{$this->name}";
+        	return "{$this->nama}";
       	}
     }
 }

@@ -13,6 +13,9 @@ use App\Http\Controllers\LanguageController;
 */
 
 Auth::routes(['verify' => true]);
+Route::match(['get', 'post'], 'register', function(){
+  return redirect('/');
+});
 
 // Main Page Route
 Route::get('/', 'DashboardController@dashboardEcommerce')->name('dashboard-ecommerce')->middleware('auth');
@@ -48,6 +51,34 @@ Route::group(['prefix'=>'apps','middleware'=>'auth'], function () {
   Route::delete('dosen/{id}',[\App\Http\Controllers\DosenlbController::class, 'destroy'])->name('apps-dosen-destroy');
   Route::get('dosen/{id}/edit',[\App\Http\Controllers\DosenlbController::class, 'edit'])->name('apps-dosen-edit');
   Route::patch('dosen/{id}',[\App\Http\Controllers\DosenlbController::class, 'update'])->name('apps-dosen-update');
+
+  //Pangkat
+  Route::get('pangkat', [App\Http\Controllers\PangkatController::class, 'index'])->name('apps-pangkat');
+  Route::post('pangkat',[\App\Http\Controllers\PangkatController::class, 'store'])->name('apps-pangkat-store');
+  Route::get('pangkat-data',[\App\Http\Controllers\PangkatController::class, 'getDataPangkat'])->name('apps-pangkat-data');
+  Route::get('pangkat/{id}',[\App\Http\Controllers\PangkatController::class, 'show'])->name('apps-pangkat-show');
+  Route::delete('pangkat/{id}',[\App\Http\Controllers\PangkatController::class, 'destroy'])->name('apps-pangkat-destroy');
+  Route::get('pangkat/{id}/edit',[\App\Http\Controllers\PangkatController::class, 'edit'])->name('apps-pangkat-edit');
+  Route::patch('pangkat/{id}',[\App\Http\Controllers\PangkatController::class, 'update'])->name('apps-pangkat-update');
+
+  //Fungsional
+  Route::get('fungsional', [App\Http\Controllers\FungsionalController::class, 'index'])->name('apps-fungsional');
+  Route::post('fungsional',[\App\Http\Controllers\FungsionalController::class, 'store'])->name('apps-fungsional-store');
+  Route::get('fungsional-data',[\App\Http\Controllers\FungsionalController::class, 'getDataFungsional'])->name('apps-fungsional-data');
+  Route::get('fungsional/{id}',[\App\Http\Controllers\FungsionalController::class, 'show'])->name('apps-fungsional-show');
+  Route::delete('fungsional/{id}',[\App\Http\Controllers\FungsionalController::class, 'destroy'])->name('apps-fungsional-destroy');
+  Route::get('fungsional/{id}/edit',[\App\Http\Controllers\FungsionalController::class, 'edit'])->name('apps-fungsional-edit');
+  Route::patch('fungsional/{id}',[\App\Http\Controllers\FungsionalController::class, 'update'])->name('apps-fungsional-update');
+
+  //Semester
+  Route::get('semester', [App\Http\Controllers\SemesterController::class, 'index'])->name('apps-semester');
+  Route::get('semester-data',[\App\Http\Controllers\SemesterController::class, 'getDataSemester'])->name('apps-semester-data');
+  Route::delete('semester',[\App\Http\Controllers\SemesterController::class, 'destroy'])->name('apps-semester-destroy');
+  Route::post('semester',[\App\Http\Controllers\SemesterController::class, 'store'])->name('apps-semester-store');
+  Route::patch('semester/{id}',[\App\Http\Controllers\SemesterController::class, 'update'])->name('apps-semester-update');
+
+  //Vakasi
+  Route::get('setting', [App\Http\Controllers\SettingController::class, 'index'])->name('apps-setting');
 
 });
 
