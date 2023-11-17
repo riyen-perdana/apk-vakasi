@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
+
 class Setting extends Model
 {
     use HasFactory;
@@ -14,11 +15,11 @@ class Setting extends Model
     public $incrementing = 'false';
 
     protected $fillable = [
-        'koreksi',
-        'soal',
-        'mengawas',
-        'pph_21',
-        'is_aktif'
+        'fungsional',
+        'a_ajr',
+        'a_soal',
+        'a_aws',
+        'a_krk'
     ];
 
     public static function boot()
@@ -27,6 +28,11 @@ class Setting extends Model
         static::creating(function ($model) {
             $model->id = (string) Str::uuid();
         });
+    }
+
+    public function fungsional()
+    {
+        return $this->belongsTo('App\Fungsional','fungsional','id');
     }
 }
 

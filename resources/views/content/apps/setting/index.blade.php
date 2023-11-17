@@ -50,14 +50,17 @@
         <table class="datatables-basic table">
           <thead>
             <tr>
-              <th>No</th>
-              <th>tahun</th>
-              <th>Amprah</th>
-              <th>Koreksi</th>
-              <th>Pengawas</th>
-              <th>Pembuat Soal</th>
-              <th>Action</th>
+              <th rowspan="2">No</th>
+              <th rowspan="2">jabatan Fungsional</th>
+              <th colspan="4" style="text-align: center">Honorarium</th>
+              <th rowspan="2">Action</th>
             </tr>
+            <tr>
+              <th>Mengajar</th>
+              <th>Membuat Soal</th>
+              <th>Pengawas</th>
+              <th>Pengoreksi</th>
+          </tr>
           </thead>
         </table>
       </div>

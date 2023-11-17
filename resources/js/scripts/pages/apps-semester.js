@@ -77,6 +77,7 @@ $(function () {
  */
 let add = async function () {
     document.getElementById("add").disabled = true; 
+    document.getElementById('progress').removeAttribute('style');
     document.getElementById('progress').hidden = false;
     actDelete();
     // await getData();

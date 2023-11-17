@@ -53,7 +53,7 @@
     },
     {
       "url": "apps/perangkat",
-      "name": "Perangkat",
+      "name": "Perangkat Unit",
       "icon": "user-check",
       "slug": "apps-perangkat"
     },

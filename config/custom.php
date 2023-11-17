@@ -3,6 +3,7 @@ return [
   'app_name' => 'Aplikasi Pembayaran Vakasi Dosen',
   'app_unor' => 'UIN SUSKA Riau',
   'app_satker' => 'Fakultas Dakwah dan Komunikasi',
+  'app_pph21' => 5,
   'custom' => [
     'mainLayoutType' => 'vertical', // Options[String]: vertical(default), horizontal
     'theme' => 'light', // options[String]: 'light'(default), 'dark', 'bordered', 'semi-dark'

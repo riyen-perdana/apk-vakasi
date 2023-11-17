@@ -13,8 +13,7 @@ class Fungsional extends Model
     public $incrementing = 'false';
     public $keyType = 'string';
     protected $fillable = [
-        'jbtn_fungsional',
-        'amprah'
+        'jbtn_fungsional'
     ];
 
     public static function boot()

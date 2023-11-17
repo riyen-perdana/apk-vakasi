@@ -45,7 +45,7 @@
             </button>
           </div>
         </div>
-        <div class="card-body" id="progress">
+        <div class="card-body" id="progress" style="display: none;">
           <div class="demo-spacing-0">
             <div class="alert alert-danger" role="alert">
               <div class="alert-body"><strong>Perhatian!</strong> Jangan Menutup Halaman Ini Atau Pindah Ke Halaman Lain Ketika Progres Import Data Berlangsung.</div>

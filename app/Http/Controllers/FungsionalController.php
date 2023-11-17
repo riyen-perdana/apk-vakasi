@@ -68,13 +68,11 @@ class FungsionalController extends Controller
             try {
 
                 $message = [
-                    'txtFungsional.required'        => 'Kolom Jabatan Fungsional Wajib Diisi',
-                    'txtAmprahMengajar.required'    => 'Kolom Besaran Amprah Mengajar Wajib Diisi',
+                    'txtFungsional.required'        => 'Kolom Jabatan Fungsional Wajib Diisi'
                 ];
         
                 $validator =  Validator::make($request->all(), [
-                    'txtFungsional'     => 'required',
-                    'txtAmprahMengajar' => 'required',
+                    'txtFungsional'     => 'required'
                 ],$message);
         
                 if ($validator->fails()) {
@@ -85,7 +83,7 @@ class FungsionalController extends Controller
                 DB::beginTransaction();
                 $query = new Fungsional();
                 $query->jbtn_fungsional     =  $request['txtFungsional'];
-                $query->amprah              =  $request['txtAmprahMengajar'];
+                //$query->amprah              =  str_replace(",", "", $request['txtAmprahMengajar']);
                 $query->save();
                 
                 DB::commit();
@@ -140,13 +138,11 @@ class FungsionalController extends Controller
             try {
 
                 $message = [
-                    'txtFungsional.required'        => 'Kolom Jabatan Fungsional Wajib Diisi',
-                    'txtAmprahMengajar.required'    => 'Kolom Besaran Amprah Mengajar Wajib Diisi',
+                    'txtFungsional.required'        => 'Kolom Jabatan Fungsional Wajib Diisi'
                 ];
         
                 $validator =  Validator::make($request->all(), [
-                    'txtFungsional'     => 'required',
-                    'txtAmprahMengajar' => 'required',
+                    'txtFungsional'     => 'required'
                 ],$message);
         
                 if ($validator->fails()) {
@@ -157,7 +153,7 @@ class FungsionalController extends Controller
                 DB::beginTransaction();
                 $query = Fungsional::where('id',$id)->first();
                 $query->jbtn_fungsional     =  $request['txtFungsional'];
-                $query->amprah              =  $request['txtAmprahMengajar'];
+                //$query->amprah              =  str_replace(",", "", $request['txtAmprahMengajar']);
                 $query->update();
                 
                 DB::commit();

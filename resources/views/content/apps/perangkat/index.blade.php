@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Jabatan Fungsional')
+@section('title', 'Perangkat Unit')
 
 @section('vendor-style')
   {{-- vendor css files --}}
@@ -23,10 +23,9 @@
 @section('content')
 <div class="row">
   <div class="col-12">
-    <p style="font-weight: 500">Halaman Manajemen Data Jabatan Fungsional Meliputi Buat, Ubah, Hapus dan Lihat Jabatan Fungsional {{ config('custom.app_satker')}}</a></p>
+    <p style="font-weight: 500">Halaman Manajemen Data Perangkat Unit Meliputi Buat, Ubah, Hapus dan Lihat Perangkat Unit Aplikasi Pembayaran Vakasi Dosen</a></p>
   </div>
 </div>
-
 <section id="basic-datatable">
   <div class="row">
     <div class="col-12">
@@ -35,7 +34,7 @@
           <div class="p-2 bd-highlight">
             <button
               data-toggle="modal"
-              data-target="#fungsional" 
+              data-target="#pengguna" 
               type="button" 
               class="btn btn-primary" 
               onclick="add()">
@@ -43,6 +42,10 @@
                 <span> Tambah Data</span>
             </button>
           </div>
+          
+            {{-- <div class="p-2 bd-highlight">Tambah Data</div> --}}
+            {{-- <div class="p-2 bd-highlight">Flex item 2</div>
+            <div class="p-2 bd-highlight">Flex item 3</div> --}}
         </div>
       </div>
       <div class="card">
@@ -50,7 +53,10 @@
           <thead>
             <tr>
               <th>No</th>
-              <th>Jabatan Fungsional</th>
+              <th>NIP/NIK</th>
+              <th>Nama</th>
+              <th>Email</th>
+              <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -60,7 +66,8 @@
   </div>
 </section>
 
-@include('content.apps.fungsional.modal-form')
+{{-- @include('content.apps.pengguna.modal-form')
+@include('content.apps.pengguna.detail') --}}
 
 @endsection
 
@@ -83,9 +90,8 @@
   <script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/extensions/sweetalert2.all.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/extensions/polyfill.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/forms/cleave/cleave.min.js')) }}"></script>
 @endsection
 @section('page-script')
   {{-- Page js files --}}
-  <script src="{{ asset(mix('js/scripts/pages/apps-fungsional.js')) }}"></script>
+  {{-- <script src="{{ asset(mix('js/scripts/pages/apps-pengguna.js')) }}"></script> --}}
 @endsection

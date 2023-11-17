@@ -36,7 +36,7 @@
                                             <div class="invalid-feedback" id="txtFungsional"></div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12 col-12">
+                                    {{-- <div class="col-md-12 col-12">
                                         <div class="form-group">
                                             <label for="txtAmprahMengajar">Besaran Amprah Mengajar<span style="color: red"> *</span></label>
                                             <input
@@ -49,7 +49,7 @@
                                             />
                                             <div class="invalid-feedback" id="txtAmprahMengajar"></div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>

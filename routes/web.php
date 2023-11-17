@@ -71,6 +71,13 @@ Route::group(['prefix'=>'apps','middleware'=>'auth'], function () {
   Route::patch('fungsional/{id}',[\App\Http\Controllers\FungsionalController::class, 'update'])->name('apps-fungsional-update');
 
   //Semester
+  Route::get('perangkat', [App\Http\Controllers\PerangkatController::class, 'index'])->name('apps-perangkat');
+  // Route::get('semester-data',[\App\Http\Controllers\SemesterController::class, 'getDataSemester'])->name('apps-semester-data');
+  // Route::delete('semester',[\App\Http\Controllers\SemesterController::class, 'destroy'])->name('apps-semester-destroy');
+  // Route::post('semester',[\App\Http\Controllers\SemesterController::class, 'store'])->name('apps-semester-store');
+  // Route::patch('semester/{id}',[\App\Http\Controllers\SemesterController::class, 'update'])->name('apps-semester-update');
+
+  //Semester
   Route::get('semester', [App\Http\Controllers\SemesterController::class, 'index'])->name('apps-semester');
   Route::get('semester-data',[\App\Http\Controllers\SemesterController::class, 'getDataSemester'])->name('apps-semester-data');
   Route::delete('semester',[\App\Http\Controllers\SemesterController::class, 'destroy'])->name('apps-semester-destroy');
@@ -79,6 +86,11 @@ Route::group(['prefix'=>'apps','middleware'=>'auth'], function () {
 
   //Vakasi
   Route::get('setting', [App\Http\Controllers\SettingController::class, 'index'])->name('apps-setting');
+  Route::get('setting-data',[\App\Http\Controllers\SettingController::class, 'getDataSetting'])->name('apps-setting-data');
+  Route::post('setting',[\App\Http\Controllers\SettingController::class, 'store'])->name('apps-setting-store');
+  Route::get('setting/{id}/edit',[\App\Http\Controllers\SettingController::class, 'edit'])->name('apps-setting-edit');
+  Route::patch('setting/{id}',[\App\Http\Controllers\SettingController::class, 'update'])->name('apps-setting-update');
+  Route::delete('setting/{id}',[\App\Http\Controllers\SettingController::class, 'destroy'])->name('apps-setting-destroy');
 
 });
 

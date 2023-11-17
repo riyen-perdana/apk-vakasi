@@ -21,8 +21,7 @@ $(function () {
         order: [[ 1, "asc" ]],
         columns : [
             { data : 'id', name:'id', orderable: false, searchable: false, width:'5%' },
-            { data : 'jbtn_fungsional', width:'20%'},
-            { data : 'amprah'},
+            { data : 'jbtn_fungsional'},
             { data : '', width:'15%'}
         ],
         columnDefs: [
@@ -45,19 +44,6 @@ $(function () {
                     );
                 }
             },
-            {
-                targets: 2,
-                orderable : true,
-                render: function (data, type, full, meta) {
-                    let $bill = full['amprah'];
-                    return (
-                        '<div>'+rupiah($bill)+'</div>'
-                    );
-                }
-            }
-            
-
-
         ],
         dom:
         '<"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
@@ -72,7 +58,7 @@ $(function () {
     }).draw();
 
 
-    //Save Data Pengguna
+    //Save Data Fungsional
     $('#formFungsional').on('submit', function(e) {
         e.preventDefault();
         let id = $('#id').val();
@@ -115,14 +101,6 @@ $(function () {
             }
         })
     });
-
-    if(amprah.length) {
-        new Cleave(amprah, {
-            numeral: true,
-            numeralThousandsGroupStyle: 'thousand'
-        });
-    }
-
 });
 
 
@@ -141,12 +119,12 @@ async function editData(id)
             $('.invalid-feedback').hide();
             $('#id').val(id);
             $('#txtFungsional').val(data.jbtn_fungsional);
-            if(amprah.length) {
-                new Cleave(amprah.val(data.amprah), {
-                    numeral: true,
-                    numeralThousandsGroupStyle: 'thousand'
-                });
-            }
+            // if(amprah.length) {
+            //     new Cleave(amprah.val(data.amprah), {
+            //         numeral: true,
+            //         numeralThousandsGroupStyle: 'thousand'
+            //     });
+            // }
         },
         error       : function(data) {
             alert('Tidak Dapat Mengambil Data')

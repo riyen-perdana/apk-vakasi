@@ -18,7 +18,29 @@ class SettingController extends Controller
     public function index()
     {
         $breadcrumbs = [['link' => "/", 'name' => "Dashboard"], ['name' => "Setting Vakasi"]];
-        return view('/content/apps/setting/index', ['breadcrumbs' => $breadcrumbs]);
+        $fungsional = Fungsional::orderBy('jbtn_fungsional','ASC')->get();
+        return view('/content/apps/setting/index', ['breadcrumbs' => $breadcrumbs,'fungsional'=> $fungsional]);
+    }
+
+    /**
+     * Fungsi Get Data Setting Vakasi
+     * @param 
+     */
+    public function getDataSetting()
+    {
+        if(request()->ajax()) {
+            try {
+                DB::beginTransaction();
+                $query = Setting::with('fungsional')->get();
+                $data = ['data'=>$query];
+                DB::commit();
+                return response()->json($data,200);
+            } catch (\Throwable $th) {
+                DB::rollBack();
+                return response()->json($th,500);
+            }
+        }
+        return redirect()->route('405');
     }
 
     /**
@@ -39,7 +61,54 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(request()->ajax()) {
+
+            $message = [
+                'optFungsional.required'   => 'Kolom Jabatan Fungsional Harus Diisi',
+                'optFungsional.unique'     => 'Honor Jabatan Fungsional Sudah Ada, Pilih Yang Lain',
+                'txt_a_ajr.required'       => 'Kolom Honorarium Mengajar Harus Diisi',
+                'txt_a_soal.required'      => 'Kolom Honorarium Membuat Soal Harus Diisi',
+                'txt_a_aws.required'       => 'Kolom Honorarium Pengawas Harus Diisi',
+                'txt_a_krk.required'       => 'Kolom Honorarium Pengoreksi Soal Harus Diisi'
+            ];
+    
+            $validator =  Validator::make($request->all(), [
+                'optFungsional'    => 'required|unique:setting,fungsional',
+                'txt_a_ajr'        => 'required',
+                'txt_a_soal'       => 'required',
+                'txt_a_aws'        => 'required',
+                'txt_a_krk'        => 'required',
+            ],$message);
+    
+            if ($validator->fails()) {
+                $pesan = $validator->messages();
+                return response()->json($pesan,500);
+            }
+
+            try {
+                
+                DB::beginTransaction();
+                $query              = new Setting();
+                $query->fungsional  = $request['optFungsional'];
+                $query->a_ajr       = str_replace(",", "", $request['txt_a_ajr']);
+                $query->a_soal      = str_replace(",", "", $request['txt_a_soal']);
+                $query->a_aws       = str_replace(",", "", $request['txt_a_aws']);
+                $query->a_krk       = str_replace(",", "", $request['txt_a_krk']);
+                $query->save();
+
+                DB::commit();
+
+                return response()->json($query,200);
+
+
+            } catch (\Throwable $th) {
+                DB::rollBack();
+                return response()->json($th,500);
+            }
+
+        }
+
+        return redirect()->route('405');
     }
 
     /**
@@ -61,7 +130,10 @@ class SettingController extends Controller
      */
     public function edit($id)
     {
-        //
+        DB::beginTransaction();
+        $query = Setting::with('fungsional')->where('id','=',$id)->first();
+        DB::commit();
+        echo json_encode($query);
     }
 
     /**
@@ -73,7 +145,53 @@ class SettingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(request()->ajax()) {
+
+            $message = [
+                'optFungsional.required'   => 'Kolom Jabatan Fungsional Harus Diisi',
+                'optFungsional.unique'     => 'Honor Jabatan Fungsional Sudah Ada, Pilih Yang Lain',
+                'txt_a_ajr.required'       => 'Kolom Honorarium Mengajar Harus Diisi',
+                'txt_a_soal.required'      => 'Kolom Honorarium Membuat Soal Harus Diisi',
+                'txt_a_aws.required'       => 'Kolom Honorarium Pengawas Harus Diisi',
+                'txt_a_krk.required'       => 'Kolom Honorarium Pengoreksi Soal Harus Diisi'
+            ];
+    
+            $validator =  Validator::make($request->all(), [
+                'optFungsional'    => 'required|unique:setting,fungsional,'.$id.',id',
+                'txt_a_ajr'        => 'required',
+                'txt_a_soal'       => 'required',
+                'txt_a_aws'        => 'required',
+                'txt_a_krk'        => 'required',
+            ],$message);
+    
+            if ($validator->fails()) {
+                $pesan = $validator->messages();
+                return response()->json($pesan,500);
+            }
+
+            try {
+                
+                DB::beginTransaction();
+                $query              = Setting::findOrFail($id);
+                $query->a_ajr       = str_replace(",", "", $request['txt_a_ajr']);
+                $query->a_soal      = str_replace(",", "", $request['txt_a_soal']);
+                $query->a_aws       = str_replace(",", "", $request['txt_a_aws']);
+                $query->a_krk       = str_replace(",", "", $request['txt_a_krk']);
+                $query->update();
+
+                DB::commit();
+
+                return response()->json($query,200);
+
+
+            } catch (\Throwable $th) {
+                DB::rollBack();
+                return response()->json($th,500);
+            }
+
+        }
+
+        return redirect()->route('405');
     }
 
     /**
@@ -84,6 +202,28 @@ class SettingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(request()->ajax()) {
+
+            try {
+
+                DB::beginTransaction();
+                $query = Setting::where('id','=',$id)->first();
+
+                if($query) {
+                    $query->delete();
+                    DB::commit();
+                    return response()->json($query,200);
+                }
+
+                DB::commit();
+                return response()->json($query,500);
+                
+                
+            } catch (\Throwable $th) {
+                DB::rollBack();
+                return response()->json($th,500);
+            }
+        }
+        return redirect()->route('405');
     }
 }

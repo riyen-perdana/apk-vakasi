@@ -122,6 +122,7 @@
     "/js/scripts/pages/apps-fungsional.js": "/js/scripts/pages/apps-fungsional.js",
     "/js/scripts/pages/apps-pangkat.js": "/js/scripts/pages/apps-pangkat.js",
     "/js/scripts/pages/apps-pengguna.js": "/js/scripts/pages/apps-pengguna.js",
+    "/js/scripts/pages/apps-perangkat.js": "/js/scripts/pages/apps-perangkat.js",
     "/js/scripts/pages/apps-permission.js": "/js/scripts/pages/apps-permission.js",
     "/js/scripts/pages/apps-role.js": "/js/scripts/pages/apps-role.js",
     "/js/scripts/pages/apps-semester.js": "/js/scripts/pages/apps-semester.js",

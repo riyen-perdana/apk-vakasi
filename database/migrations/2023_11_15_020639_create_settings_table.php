@@ -15,11 +15,11 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('setting', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->integer('koreksi')->comment('Besaran Amprah Pengoreksi Soal')->nullable();
-            $table->integer('soal')->comment('Besaran Amprah Pembuatan Soal')->nullable();
-            $table->integer('mengawas')->comment('Besaran Amprah Mengawas')->nullable();
-            $table->integer('pph_21')->comment('Besaran Pajak')->nullable();
-            $table->enum('is_aktif',['Y','N'])->comment('Apakah Setting Aktif')->default('Y')->nullable();
+            $table->uuid('fungsional')->comment('Kode Jenis Jabatan Fungsional')->nullable();
+            $table->integer('a_ajr')->comment('Besaran Amprah Mengajar')->nullable();
+            $table->integer('a_soal')->comment('Besaran Amprah Membuat Soal')->nullable();
+            $table->integer('a_aws')->comment('Besaran Amprah Mengawas')->nullable();
+            $table->integer('a_krk')->comment('Besaram Amprah Mengoreksi')->nullable();
             $table->timestamps();
         });
     }

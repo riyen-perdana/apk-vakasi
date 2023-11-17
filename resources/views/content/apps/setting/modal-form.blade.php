@@ -24,77 +24,78 @@
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="txtHonorKoreksiSoal">Honor Pengoreksi Soal<span style="color: red"> *</span></label>
+                                            <label for="optFungsional">Jabatan Fungsional<span style="color: red"> *</span></label>
+                                            <select class="form-control" id="optFungsional" name="optFungsional">
+                                                <option value="">Pilih Status</option>
+                                                    @foreach ($fungsional as $item)
+                                                        <option value="{{$item->id}}">{{ $item->jbtn_fungsional }}</option>
+                                                    @endforeach
+                                              </select>
+                                            <div class="invalid-feedback" id="optFungsional"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-12">
+                                        <div class="form-group">
+                                            <label for="txt_a_ajr">Honorarium Mengajar<span style="color: red"> *</span></label>
                                             <input
                                                 type="text"
-                                                id="txtHonorKoreksiSoal"
+                                                id="txt_a_ajr"
                                                 class="form-control"
-                                                name="txtHonorKoreksiSoal"
-                                                placeholder="Honor Pengoreksi Soal"
+                                                name="txt_a_ajr"
+                                                placeholder="Honorarium Mengajar"
                                                 autofocus
                                             />
-                                            <div class="invalid-feedback" id="txtHonorKoreksiSoal"></div>
+                                            <div class="invalid-feedback" id="txt_a_ajr"></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="txtHonorPengawas">Honor Pengawas<span style="color: red"> *</span></label>
+                                            <label for="txt_a_soal">Honorarium Membuat Soal<span style="color: red"> *</span></label>
                                             <input
                                                 type="text"
-                                                id="txtHonorPengawas"
+                                                id="txt_a_soal"
                                                 class="form-control"
-                                                name="txtHonorPengawas"
-                                                placeholder="Honor Pengawas"
+                                                name="txt_a_soal"
+                                                placeholder="Honorarium Membuat Soal"
                                                 
                                             />
-                                            <div class="invalid-feedback" id="txtHonorPengawas"></div>
+                                            <div class="invalid-feedback" id="txt_a_soal"></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="txtHonorPembuatSoal">Honor Pembuat Soal<span style="color: red"> *</span></label>
+                                            <label for="txt_a_aws">Honorarium Pengawas<span style="color: red"> *</span></label>
                                             <input
                                                 type="text"
-                                                id="txtHonorPembuatSoal"
+                                                id="txt_a_aws"
                                                 class="form-control"
-                                                name="txtHonorPembuatSoal"
-                                                placeholder="Honor Pembuat Soal"
+                                                name="txt_a_aws"
+                                                placeholder="Honorarium Pengawas"
                                                 
                                             />
-                                            <div class="invalid-feedback" id="txtHonorPembuatSoal"></div>
+                                            <div class="invalid-feedback" id="txt_a_aws"></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="txtPajakPasal21">PPH Pasal 21<span style="color: red"> * ditulis dengan tidak menyertakan tanda persen</span></label>
+                                            <label for="txt_a_krk">Honorarium Pengoreksi Soal<span style="color: red"> *</span></label>
                                             <input
                                                 type="text"
-                                                id="txtPajakPasal21"
+                                                id="txt_a_krk"
                                                 class="form-control"
-                                                name="txtPajakPasal21"
-                                                placeholder="PPJ Pasal 21"
+                                                name="txt_a_krk"
+                                                placeholder="Honorarium Pengoreksi Soal"
                                                 
                                             />
-                                            <div class="invalid-feedback" id="txtPajakPasal21"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 col-12">
-                                        <div class="form-group">
-                                            <label for="txtPajakPasal21">Status<span style="color: red"> *</span></label>
-                                            <select class="form-control" id="optStatus" name="optStatus">
-                                                <option value="">Pilih Status</option>
-                                                <option value="Y">Aktif</option>
-                                                <option value="N">Tidak Aktif</option>
-                                              </select>
-                                            <div class="invalid-feedback" id="txtPajakPasal21"></div>
+                                            <div class="invalid-feedback" id="txt_a_krk"></div>
                                         </div>
                                     </div>
                                 </div>
