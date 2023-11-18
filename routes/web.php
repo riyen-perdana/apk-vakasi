@@ -70,9 +70,9 @@ Route::group(['prefix'=>'apps','middleware'=>'auth'], function () {
   Route::get('fungsional/{id}/edit',[\App\Http\Controllers\FungsionalController::class, 'edit'])->name('apps-fungsional-edit');
   Route::patch('fungsional/{id}',[\App\Http\Controllers\FungsionalController::class, 'update'])->name('apps-fungsional-update');
 
-  //Semester
+  //Perangkat
   Route::get('perangkat', [App\Http\Controllers\PerangkatController::class, 'index'])->name('apps-perangkat');
-  // Route::get('semester-data',[\App\Http\Controllers\SemesterController::class, 'getDataSemester'])->name('apps-semester-data');
+  Route::get('perangkat-data',[\App\Http\Controllers\PerangkatController::class, 'getDataPerangkat'])->name('apps-perangkat-data');
   // Route::delete('semester',[\App\Http\Controllers\SemesterController::class, 'destroy'])->name('apps-semester-destroy');
   // Route::post('semester',[\App\Http\Controllers\SemesterController::class, 'store'])->name('apps-semester-store');
   // Route::patch('semester/{id}',[\App\Http\Controllers\SemesterController::class, 'update'])->name('apps-semester-update');

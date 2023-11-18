@@ -41,19 +41,19 @@
         <div class="card-body statistics-body">
           <div class="row">
             @foreach ($perangkat as $item)
-				<div class="col-xl-6 col-sm-12 col-12 mb-2 mb-xl-0" style="margin-bottom: 10px !important;">
-					<div class="media">
-					<div class="avatar bg-light-primary mr-2">
-						<div class="avatar-content">
-						<i data-feather="user" class="avatar-icon"></i>
-						</div>
-					</div>
-					<div class="media-body my-auto">
-						<h5 class="font-weight-bolder mb-0">{{ $item->nama_perangkat }}</h5>
-						<p class="card-text font-small-3 mb-0">{{ $item->is_jabatan }}</p>
-					</div>
-					</div>
-				</div>
+              <div class="col-xl-6 col-sm-12 col-12 mb-2 mb-xl-0" style="margin-bottom: 10px !important;">
+                <div class="media">
+                <div class="avatar bg-light-primary mr-2">
+                  <div class="avatar-content">
+                  <i data-feather="user" class="avatar-icon"></i>
+                  </div>
+                </div>
+                <div class="media-body my-auto">
+                  <h5 class="font-weight-bolder mb-0">{{ $item->nama_perangkat }}</h5>
+                  <p class="card-text font-small-3 mb-0">{{ $item->is_jabatan }}</p>
+                </div>
+                </div>
+              </div>
             @endforeach
           </div>
         </div>

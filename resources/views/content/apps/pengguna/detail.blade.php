@@ -12,40 +12,40 @@
                     <h6 id=""></h6>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="">Nomor Induk Kepegawaian</label>
+                    <label class="form-label" for="txtNIPView">Nomor Induk Kepegawaian</label>
                     <h6 id="txtNIPView"></h6>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="">Nama</label>
+                    <label class="form-label" for="txtNamaView">Nama</label>
                     <h6 id="txtNamaView"></h6>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="">Gelar Depan</label>
+                    <label class="form-label" for="txtGlrDpnView">Gelar Depan</label>
                     <h6 id="txtGlrDpnView">
                     </h6>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="">Gelar Belakang</label>
+                    <label class="form-label" for="txtGlrBlkView">Gelar Belakang</label>
                     <h6 id="txtGlrBlkView">
                     </h6>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="">Nama Dengan Gelar</label>
+                    <label class="form-label" for="txtNamaGelarView">Nama Dengan Gelar</label>
                     <h6 id="txtNamaGelarView">
                     </h6>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="">Email</label>
+                    <label class="form-label" for="txtEmailView">Email</label>
                     <h6 id="txtEmailView">
                     </h6>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="">Role</label>
+                    <label class="form-label" for="txtRole">Role</label>
                     <h6 id="txtRole">
                     </h6>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="">Status</label>
+                    <label class="form-label" for="txtStatus">Status</label>
                     <h6 id="txtStatus">
                     </h6>
                 </div>

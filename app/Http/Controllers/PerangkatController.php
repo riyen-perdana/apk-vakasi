@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\JabatanStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Perangkat;
@@ -16,7 +17,31 @@ class PerangkatController extends Controller
     public function index()
     {
         $breadcrumbs = [['link' => "/", 'name' => "Dashboard"], ['name' => "Perangkat"]];
-        return view('/content/apps/perangkat/index', ['breadcrumbs' => $breadcrumbs]);
+        return view('/content/apps/perangkat/index', ['breadcrumbs' => $breadcrumbs,'jabatan' => JabatanStatus::cases()]);
+    }
+
+    /**
+     * Get Data Perangkat
+     * @param void
+     * @return \Illuminate\Http\Response
+     */
+    public function getDataPerangkat()
+    {
+        if(request()->ajax()) {
+            try {
+                DB::beginTransaction();
+                $query = Perangkat::all();
+                $data = ['data'=>$query];
+                DB::commit();
+
+                return response()->json($data,200);
+
+            } catch (\Throwable $th) {
+                DB::rollBack();
+                return response()->json($th,500);
+            }
+        }
+        return redirect()->route('405');
     }
 
     /**

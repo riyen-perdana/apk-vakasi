@@ -12,12 +12,17 @@
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/animate/animate.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/sweetalert2.min.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/pickadate/pickadate.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
 @endsection
 
 @section('page-style')
   {{-- Page Css files --}}
   <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
   <link rel="stylesheet" href="{{asset(mix('css/base/plugins/extensions/ext-component-sweet-alerts.css'))}}">
+  <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-pickadate.css')) }}">
+
 @endsection
 
 @section('content')
@@ -34,7 +39,7 @@
           <div class="p-2 bd-highlight">
             <button
               data-toggle="modal"
-              data-target="#pengguna" 
+              data-target="#perangkat" 
               type="button" 
               class="btn btn-primary" 
               onclick="add()">
@@ -55,7 +60,9 @@
               <th>No</th>
               <th>NIP/NIK</th>
               <th>Nama</th>
-              <th>Email</th>
+              <th>Awal Menjabat</th>
+              <th>Akhir Menjabat</th>
+              <th>PLT</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -66,8 +73,8 @@
   </div>
 </section>
 
-{{-- @include('content.apps.pengguna.modal-form')
-@include('content.apps.pengguna.detail') --}}
+@include('content.apps.perangkat.modal-form')
+{{-- @include('content.apps.pengguna.detail') --}}
 
 @endsection
 
@@ -90,8 +97,13 @@
   <script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/extensions/sweetalert2.all.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/extensions/polyfill.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.date.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.time.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/pickers/pickadate/legacy.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
 @endsection
 @section('page-script')
   {{-- Page js files --}}
-  {{-- <script src="{{ asset(mix('js/scripts/pages/apps-pengguna.js')) }}"></script> --}}
+  <script src="{{ asset(mix('js/scripts/pages/apps-perangkat.js')) }}"></script>
 @endsection
