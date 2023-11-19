@@ -234,7 +234,7 @@ function actDelete(id)
 
 async function viewData(id)
 {
-    $('#viewModalLabel').text('Detail Data Pengguna');
+    $('#viewModalLabel').text('Detail Data Perangkat');
     $.ajax ({
         url         : "pengguna/"+id+"/edit",
         type        : "GET",

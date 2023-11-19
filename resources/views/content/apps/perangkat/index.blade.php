@@ -54,7 +54,7 @@
         </div>
       </div>
       <div class="card">
-        <table class="datatables-basic table">
+        <table class="datatables-basic table display-nowrap">
           <thead>
             <tr>
               <th>No</th>
@@ -74,7 +74,7 @@
 </section>
 
 @include('content.apps.perangkat.modal-form')
-{{-- @include('content.apps.pengguna.detail') --}}
+@include('content.apps.perangkat.detail')
 
 @endsection
 

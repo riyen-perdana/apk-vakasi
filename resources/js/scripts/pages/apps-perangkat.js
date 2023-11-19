@@ -76,10 +76,15 @@ $(function () {
     dt_basic_table.dataTable().fnDestroy();
     table = dt_basic_table.DataTable({
         ajax: 'perangkat-data',
+        //scrollX: true,
         columns : [
             { data : 'id', name:'id', orderable: false, searchable: false, width:'5%' },
             { data : 'nip', width:'10%'},
-            { data : 'nama_perangkat',width:'20%'},
+            { data : 'nama_perangkat',width:'20%',
+                render: function ( data, type, row ) {
+                    return row.nama_perangkat+'<br><strong>'+row.is_jabatan+'</strong>';
+                }
+            },
             { data : 'awal_jabatan',width:'10%'},
             { data : 'akhir_jabatan', width:'10%'},
             { data : 'is_plt', width:'10%'},
@@ -118,13 +123,13 @@ $(function () {
                 targets: -1,
                 orderable: false,
                 render: function (data, type, full, meta) {
-                    let $id = full['code_red'];
+                    let $id = full['id'];
                     return (
                         '<div class="demo-inline-spacing">'+
                             '<button type="button" data-toggle="modal" data-target="#modals-slide-in" style="margin-top:0 !important;" class="btn btn-sm btn-icon btn-danger" onClick="viewData(\''+$id+'\')">'+
                                 feather.icons['info'].toSvg() +
                             '</button>'+
-                            '<button type="button" style="margin-top:0 !important;" data-toggle="modal" data-target="#pengguna" class="btn btn-sm btn-icon btn-warning" onClick="editData(\''+$id+'\')">'+
+                            '<button type="button" style="margin-top:0 !important;" data-toggle="modal" data-target="#perangkat" class="btn btn-sm btn-icon btn-warning" onClick="editData(\''+$id+'\')">'+
                                 feather.icons['edit-3'].toSvg() +
                             '</button>'+
                             '<button type="button" style="margin-top:0 !important;" class="btn btn-sm btn-icon btn-danger" onClick="deleteData(\''+$id+'\')">'+
@@ -156,4 +161,64 @@ function add() {
     $('#formPerangkat')[0].reset();
     $('#modalLabel').text('Tambah Data Perangkat');
     $('#btnName').text('Simpan');
+}
+
+async function viewData(id)
+{
+    console.log(id);
+    $('#viewModalLabel').text('Detail Data Perangkat');
+    $.ajax ({
+        url         : "perangkat/"+id,
+        type        : "GET",
+        dataType    : "JSON",
+        success     : function(data) {
+            $('#txtNIPView').text(data.nip);
+            $('#txtNamaPerangkat').text(data.nama);
+            data.glr_dpn !=null ? $('#txtGlrDpnView').text(data.glr_dpn) : $('#txtGlrDpnView').text("-");
+            data.glr_blk !=null ? $('#txtGlrBlkView').text(data.glr_blk) : $('#txtGlrBlkView').text("-");
+            $('#txtJabatan').text(data.is_jabatan);
+            data.is_plt == 'Y' ? $('#txtPLT').append('PLT') : $('#txtPLT').append('Bukan PLT');
+            data.is_aktif == 'Y' ? $('#txtStatus').append('Aktif') : $('#txtStatus').append('Tidak Aktif');
+            $('#txtAwalMenjabat').text(data.awal_jabatan);
+            $('#txtAkhirMenjabat').text(data.akhir_jabatan);
+        },
+        error       : function(data) {
+            alert('Tidak Dapat Mengambil Data')
+            //console.log(data);
+        }
+    });
+}
+
+async function editData(id)
+{
+    save_method ="edit";
+    $('input[name=method]').val('PATCH');
+    $('#modalLabel').text('Ubah Data Perangkat');
+    $('#btnName').text('Ubah');
+    $.ajax ({
+        url         : "perangkat/"+id+"/edit",
+        type        : "GET",
+        dataType    : "JSON",
+        success     : function(data) {
+            $('#id').val(id);
+            $('#txtNIP').val(data.nip);
+            $('#txtNama').val(data.nama);
+            $('#txtGlrDpn').val(data.glr_dpn);
+            $('#txtGlrBlk').val(data.glr_blk);
+            $('#optJabatan').val((data.is_jabatan).replaceAll(' ','_'));
+            $('#optStatus').val(data.is_aktif);
+            $('#optPlt').val(data.is_plt);
+            // $('#txtAwalJabatan').val(data.awal_jabatan);
+            $('#awljbtn').flatpickr({
+                defaultDate : data.awal_jabatan
+            });
+            $('#akhjbtn').flatpickr({
+                defaultDate : data.akhir_jabatan
+            });    
+        },
+        error       : function(data) {
+            alert('Tidak Dapat Mengambil Data')
+            //console.log(data);
+        }
+    });
 }

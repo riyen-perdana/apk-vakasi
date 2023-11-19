@@ -111,14 +111,14 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="txtAwalJabatan">Awal Jabatan<span style="color: red"> *</span></label>
-                                            <input type="text" id="awljbtn" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" />
+                                            <input type="text" id="awljbtn" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" name="txtAwalJabatan" />
                                             <div class="invalid-feedback" id="txtAwalJabatan"></div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="txtAkhirJabatan">Akhir Jabatan<span style="color: red"> *</span></label>
-                                            <input type="text" id="akhjbtn" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" />
+                                            <input type="text" id="akhjbtn" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" name="txtAkhirJabatan" />
                                             <div class="invalid-feedback" id="txtAkhirJabatan"></div>
                                         </div>
                                     </div>

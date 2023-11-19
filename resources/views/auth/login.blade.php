@@ -20,7 +20,8 @@
       <!-- Left Text-->
       <div class="d-none d-lg-flex col-lg-8 align-items-center p-5">
         <div class="w-100 d-lg-flex align-items-center justify-content-center px-5">
-          <img class="img-fluid" src="{{asset('images/pages/login-v2.svg')}}" alt="Login V2" />
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid"
+          alt="Sample image">
         </div>
       </div>
       <!-- /Left Text-->

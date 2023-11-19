@@ -73,7 +73,8 @@ Route::group(['prefix'=>'apps','middleware'=>'auth'], function () {
   //Perangkat
   Route::get('perangkat', [App\Http\Controllers\PerangkatController::class, 'index'])->name('apps-perangkat');
   Route::get('perangkat-data',[\App\Http\Controllers\PerangkatController::class, 'getDataPerangkat'])->name('apps-perangkat-data');
-  // Route::delete('semester',[\App\Http\Controllers\SemesterController::class, 'destroy'])->name('apps-semester-destroy');
+  Route::get('perangkat/{id}',[\App\Http\Controllers\PerangkatController::class, 'show'])->name('apps-perangkat-show');
+  Route::get('perangkat/{id}/edit',[\App\Http\Controllers\PerangkatController::class, 'edit'])->name('apps-perangkat-edit');
   // Route::post('semester',[\App\Http\Controllers\SemesterController::class, 'store'])->name('apps-semester-store');
   // Route::patch('semester/{id}',[\App\Http\Controllers\SemesterController::class, 'update'])->name('apps-semester-update');
 

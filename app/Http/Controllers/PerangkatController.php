@@ -73,7 +73,20 @@ class PerangkatController extends Controller
      */
     public function show($id)
     {
-        //
+        if(request()->ajax()) {
+            try {
+                DB::beginTransaction();
+                $query = Perangkat::findOrFail($id);
+                DB::commit();
+                return response()->json($query,200);
+
+            } catch (\Throwable $th) {
+                DB::rollBack();
+                return response()->json($th,500);
+            }
+        }
+
+        return redirect()->route('405');
     }
 
     /**
@@ -84,7 +97,15 @@ class PerangkatController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $query = Perangkat::findOrFail($id);
+            DB::commit();
+            echo json_encode($query);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return response()->json($th,500);
+        }
     }
 
     /**
