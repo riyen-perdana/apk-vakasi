@@ -32,3 +32,4 @@ Route::group([
 });
 
 Route::get('semester-aktif',[\App\Http\Controllers\Api\ApiController::class, 'getSemesterAktif'])->name('api-get-semester-aktif');
+Route::get('get-data-dosen',[\App\Http\Controllers\Api\ApiController::class, 'getDataDosen'])->name('api-get-data-dosen');

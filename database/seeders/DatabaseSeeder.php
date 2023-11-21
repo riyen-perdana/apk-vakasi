@@ -1,5 +1,6 @@
 <?php
 
+use Database\Seeders\DosenLbSeeder;
 use Database\Seeders\PangkatSeeder;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RolesTableSeeder;
@@ -23,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PangkatSeeder::class);
         $this->call(FungsionalSeeder::class);
         $this->call(PerangkatSeeder::class);
+        $this->call(DosenLbSeeder::class);
     }
 }

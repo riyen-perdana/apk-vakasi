@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Dosenlb;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Semester;
+use Illuminate\Support\Facades\DB;
 
 class ApiController extends Controller
 {
@@ -32,5 +34,22 @@ class ApiController extends Controller
                 $query->save();
             }
         }
-    }    
+    }
+    
+    public function getDataDosen()
+    {
+        try {
+            DB::beginTransaction();
+            //$query = Dosenlb::with('pangkat','fungsional','fungsional.setting')->where('nup_nidn',request()->nup)->get();
+            $query = DB::table('dosenlb')->select('nup_nidn','name','pangkat.pangkat','jbtn_fungsional', 'a_ajr','a_aws','a_krk','a_soal')
+                    ->join('pangkat', 'pangkat.id', '=', 'dosenlb.pangkat')
+                    ->join('fungsional', 'fungsional.id', '=', 'dosenlb.fungsional')
+                    ->join('setting','setting.fungsional','=','fungsional.id' )
+                    ->where('nup_nidn',request()->nup)->get();
+            return response()->json($query,200);
+            DB::commit();
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
 }

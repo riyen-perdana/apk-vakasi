@@ -99,7 +99,7 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="optPlt">Status Plt<span style="color: red"> *</span></label>
+                                            <label for="optPlt">Status PLT<span style="color: red"> *</span></label>
                                             <select class="form-control" id="optPlt" name="optPlt">
                                                 <option value="">Pilih Status</option>
                                                 <option value="Y">Aktif</option>

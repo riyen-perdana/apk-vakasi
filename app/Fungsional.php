@@ -28,4 +28,9 @@ class Fungsional extends Model
     {
         return $this->hasMany('App\Dosen','fungsional');
     }
+
+    public function setting()
+    {
+        return $this->hasMany('App\Setting','fungsional');    
+    }
 }

@@ -189,7 +189,7 @@ async function viewData(id)
     });
 }
 
-async function editData(id)
+function editData(id)
 {
     save_method ="edit";
     $('input[name=method]').val('PATCH');
