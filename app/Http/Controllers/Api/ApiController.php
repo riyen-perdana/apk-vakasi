@@ -39,17 +39,46 @@ class ApiController extends Controller
     public function getDataDosen()
     {
         try {
+
+            $response_db = [];
             DB::beginTransaction();
-            //$query = Dosenlb::with('pangkat','fungsional','fungsional.setting')->where('nup_nidn',request()->nup)->get();
+
+            $query_semester = Semester::select('id_smt','nm_semester')->where('a_periode_aktif','1')->first();
+            $response_db['smt'] = $query_semester;
+
             $query = DB::table('dosenlb')->select('nup_nidn','name','pangkat.pangkat','jbtn_fungsional', 'a_ajr','a_aws','a_krk','a_soal')
                     ->join('pangkat', 'pangkat.id', '=', 'dosenlb.pangkat')
                     ->join('fungsional', 'fungsional.id', '=', 'dosenlb.fungsional')
                     ->join('setting','setting.fungsional','=','fungsional.id' )
-                    ->where('nup_nidn',request()->nup)->get();
-            return response()->json($query,200);
+                    ->get()->toArray();
+
+            if($query) {
+                $dsn = [];
+                for ($i=0; $i < count($query) ; $i++) {
+                    $bad = [];
+                    $resp_dsn = Http::get($this->host.'/get-bad-dosen',
+                        [
+                            'token' => $this->token,
+                            'id_smt' => $query_semester->id_smt,
+                            'nup' => $query[$i]->nup_nidn,
+                            'id_sms' => config('custom.app_fak')
+                        ])->json();
+                    
+                        if(!$resp_dsn == NULL) {
+                            $bad['bad'] = $resp_dsn;
+                        }                   
+                        
+                    $dsn[] = array_merge((array)$query[$i],$bad);
+                }
+                
+            }
             DB::commit();
+                
+            $response_db['dsn'] = $dsn;
+            return $response_db;
+
         } catch (\Throwable $th) {
-            //throw $th;
+            throw $th;
         }
     }
 }

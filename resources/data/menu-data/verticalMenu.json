@@ -92,6 +92,12 @@
       "slug": "setting-vakasi"
     },
     {
+      "url": "apps/vakasi",
+      "name": "Data Vakasi",
+      "icon": "thumbs-up",
+      "slug": "data-vakasi"
+    },
+    {
       "navheader": "Apps & Pages",
       "slug": ""
     },
