@@ -9,7 +9,7 @@ class Semester extends Model
 {
     use HasFactory;
     protected $table = 'semester';
-    public $incrementing = 'false';
+    public $incrementing = false;
     protected $primaryKey = 'id_smt';
     protected $keyType = 'string';
 

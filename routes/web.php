@@ -85,13 +85,21 @@ Route::group(['prefix'=>'apps','middleware'=>'auth'], function () {
   Route::post('semester',[\App\Http\Controllers\SemesterController::class, 'store'])->name('apps-semester-store');
   Route::patch('semester/{id}',[\App\Http\Controllers\SemesterController::class, 'update'])->name('apps-semester-update');
 
-  //Vakasi
+  //Setting Vakasi
   Route::get('setting', [App\Http\Controllers\SettingController::class, 'index'])->name('apps-setting');
   Route::get('setting-data',[\App\Http\Controllers\SettingController::class, 'getDataSetting'])->name('apps-setting-data');
   Route::post('setting',[\App\Http\Controllers\SettingController::class, 'store'])->name('apps-setting-store');
   Route::get('setting/{id}/edit',[\App\Http\Controllers\SettingController::class, 'edit'])->name('apps-setting-edit');
   Route::patch('setting/{id}',[\App\Http\Controllers\SettingController::class, 'update'])->name('apps-setting-update');
   Route::delete('setting/{id}',[\App\Http\Controllers\SettingController::class, 'destroy'])->name('apps-setting-destroy');
+
+  //Vakasi
+  Route::get('vakasi', [App\Http\Controllers\VakasiController::class, 'index'])->name('apps-vakasi');
+  Route::post('vakasi',[\App\Http\Controllers\VakasiController::class, 'store'])->name('apps-vakasi-store');
+
+  //Vakasi Detail
+  Route::post('vakasi-detail',[\App\Http\Controllers\VakasiDetailController::class, 'store'])->name('apps-vakasi-detail-store');
+
 
 });
 

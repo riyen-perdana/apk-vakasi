@@ -93,37 +93,6 @@ let add = async function () {
     
 }
 
-/**
- * Hapus Data
- * @param {*} id 
- */
-async function deleteData(id)
-{
-     Swal.fire({
-        title: 'Menghapus Data Fungsional',
-        text: "Apakah Anda Yakin ?",
-        icon: 'warning',
-        showCancelButton: !0,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Hapus !',
-        cancelButtonText: 'Batalkan',
-        confirmButtonClass: 'btn btn-primary',
-        cancelButtonClass: 'btn btn-danger ml-1',
-        buttonsStyling: !1
-      }).then(function (t) {
-        t.value
-          ? actDelete(id)
-          : t.dismiss === Swal.DismissReason.cancel &&
-            Swal.fire({
-              title: 'Dibatalkan',
-              text: 'Data Fungsional Batal Dihapus',
-              icon: 'error',
-              confirmButtonClass: 'btn btn-success'
-        });
-    });
-}
-
 function actDelete()
 {
     document.getElementById('example-caption-1').innerText = 'Menghapus Data';

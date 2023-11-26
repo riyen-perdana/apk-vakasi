@@ -31,5 +31,8 @@ Route::group([
   });
 });
 
+Route::get('semester-perangkat',[\App\Http\Controllers\Api\ApiController::class, 'getDataSemesterPerangkat'])->name('api-get-semester-perangkat');
 Route::get('semester-aktif',[\App\Http\Controllers\Api\ApiController::class, 'getSemesterAktif'])->name('api-get-semester-aktif');
 Route::get('get-data-dosen',[\App\Http\Controllers\Api\ApiController::class, 'getDataDosen'])->name('api-get-data-dosen');
+Route::get('get-data-dosen-lb',[\App\Http\Controllers\Api\ApiController::class, 'getDataDosenLb'])->name('api-get-data-dosen-lb');
+Route::get('get-data-bad',[\App\Http\Controllers\Api\ApiController::class, 'getDataBadDosenLb'])->name('api-get-data-bad');

@@ -10,7 +10,7 @@ class Fungsional extends Model
 {
     use HasFactory;
     protected $table = 'fungsional';
-    public $incrementing = 'false';
+    public $incrementing = false;
     public $keyType = 'string';
     protected $fillable = [
         'jbtn_fungsional'

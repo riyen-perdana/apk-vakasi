@@ -28,7 +28,7 @@
       <!-- Login-->
       <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
         <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
-          <h2 class="card-title font-weight-bold mb-1" style="font-size: 20px !important;font-weight:500">{{ config('custom.app_name')}}</h2>
+          <h2 class="card-title font-weight-bold mb-1" style="font-size: 18px !important;font-weight:500">{{ config('custom.app_name')}}</h2>
           <h3 class="card-title font-weight-bold mb-1" style="font-size: 16px !important;font-weight:500; margin-top:-10px">{{ config('custom.app_unor')}}</h3>
           <h3 class="card-title font-weight-bold mb-1" style="font-size: 16px !important;font-weight:500; margin-top:-10px">{{ config('custom.app_satker')}}</h3>
           <p class="card-text mb-2">Masukkan Nomor Induk Pegawai dan Kata Sandi</p>

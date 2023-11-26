@@ -12,7 +12,7 @@ class Setting extends Model
     use HasFactory;
     protected $table = 'setting';
     public $keyType = 'string';
-    public $incrementing = 'false';
+    public $incrementing = false;
 
     protected $fillable = [
         'fungsional',

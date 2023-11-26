@@ -11,7 +11,7 @@ class Dosenlb extends Model
     use HasFactory;
     protected $table = 'dosenlb';
     public $keyType = 'string';
-    public $incrementing = 'false';
+    public $incrementing = false;
     protected $fillable = [
         'nup_nidn',
         'glr_dpn',

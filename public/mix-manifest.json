@@ -127,6 +127,7 @@
     "/js/scripts/pages/apps-role.js": "/js/scripts/pages/apps-role.js",
     "/js/scripts/pages/apps-semester.js": "/js/scripts/pages/apps-semester.js",
     "/js/scripts/pages/apps-setting.js": "/js/scripts/pages/apps-setting.js",
+    "/js/scripts/pages/apps-vakasi.js": "/js/scripts/pages/apps-vakasi.js",
     "/js/scripts/pages/dashboard-analytics.js": "/js/scripts/pages/dashboard-analytics.js",
     "/js/scripts/pages/dashboard-ecommerce.js": "/js/scripts/pages/dashboard-ecommerce.js",
     "/js/scripts/pages/page-account-settings.js": "/js/scripts/pages/page-account-settings.js",

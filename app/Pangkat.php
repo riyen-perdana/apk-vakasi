@@ -11,7 +11,7 @@ class Pangkat extends Model
     use HasFactory;
     protected $table = 'pangkat';
     public $keyType = 'string';
-    public $incrementing = 'false';
+    public $incrementing = false;
     protected $fillable = ['pangkat','golongan'];
 
     public static function boot()

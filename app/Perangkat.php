@@ -11,7 +11,7 @@ class Perangkat extends Model
     use HasFactory;
     protected $table = 'perangkat';
     public $keyType = 'string';
-    public $incrementing = 'false';
+    public $incrementing = false;
 
     protected $fillable = [
         'nip',
