@@ -74,7 +74,6 @@
               <th>No</th>
               <th>ID Semester</th>
               <th>Nama Semester</th>
-              <th>Aktif</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -83,6 +82,8 @@
     </div>
   </div>
 </section>
+
+@include('content.apps.vakasi.detail')
 
 @endsection
 

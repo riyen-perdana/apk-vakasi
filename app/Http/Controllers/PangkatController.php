@@ -108,7 +108,7 @@ class PangkatController extends Controller
      */
     public function show($id)
     {
-        return redirect()->route('error');
+        return redirect()->route('405');
     }
 
     /**

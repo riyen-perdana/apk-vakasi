@@ -52,4 +52,48 @@ class VakasiController extends Controller
             return response()->json('error',500);
         }
     }
+
+    /**
+     * get Data Vakasi dan Vakasi Detail
+     * @param void
+     * @return \Illuminate\Http\Response
+     */
+    public function getDataVakasi()
+    {
+        if(request()->ajax()) {
+            try {
+                DB::beginTransaction();
+                $query = Vakasi::with('semester')->get();
+                DB::commit();
+                return ['data'=>$query];
+            } catch (\Throwable $th) {
+                Db::rollBack();
+                throw $th;
+            }
+        }
+
+        return redirect()->route('405');
+    }
+
+    /**
+     * Show data
+     * @param $id
+     * @return \illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        if(request()->ajax()) {
+            try {
+                DB::beginTransaction();
+                $query = Vakasi::with('semester')->where('id','=',$id)->first();
+                DB::commit();
+                return response()->json($query,200);
+            } catch (\Throwable $th) {
+                DB::rollBack();
+                return redirect()->json($th,500);
+            }
+        }
+
+        return redirect()->route('405');
+    }
 }

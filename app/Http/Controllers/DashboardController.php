@@ -19,7 +19,7 @@ class DashboardController extends Controller
   }
 
   // Dashboard - Ecommerce
-  public function dashboardEcommerce()
+  public function dashboard()
   {
     $pageConfigs = ['pageHeader' => false];
     $query = Perangkat::all();

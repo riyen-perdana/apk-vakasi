@@ -53,6 +53,8 @@ class Handler extends ExceptionHandler
             return redirect()->route('error');
         } else if ($exception instanceof MethodNotAllowedHttpException) {
             return redirect()->route('405');
+        } else if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
+            return redirect()->route('403');
         }
         return parent::render($request, $exception);
     }

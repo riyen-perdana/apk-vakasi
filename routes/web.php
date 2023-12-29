@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LanguageController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +12,10 @@ use App\Http\Controllers\LanguageController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('download-amprah',[\App\Http\Controllers\DownloadController::class,'download_amprah'])->name('download-amprah');
+Route::get('download-amprah-soal',[\App\Http\Controllers\DownloadController::class,'download_amprah_soal'])->name('download-amprah-soal');
+Route::get('download-amprah-pengawas',[\App\Http\Controllers\DownloadController::class,'download_amprah_mengawas'])->name('download-amprah-pengawas');
+Route::get('download-amprah-koreksi',[\App\Http\Controllers\DownloadController::class,'download_amprah_koreksi'])->name('download-amprah-koreksi');
 
 Auth::routes(['verify' => true]);
 Route::match(['get', 'post'], 'register', function(){
@@ -18,88 +23,93 @@ Route::match(['get', 'post'], 'register', function(){
 });
 
 // Main Page Route
-Route::get('/', 'DashboardController@dashboardEcommerce')->name('dashboard-ecommerce')->middleware('auth');
+Route::get('/', 'DashboardController@dashboard')->name('dashboard')->middleware('auth','permission:dashboard.index');
 Route::group(['prefix'=>'apps','middleware'=>'auth'], function () {
   
   //Permission Route
-  Route::get('permissions', [App\Http\Controllers\PermissionController::class, 'index'])->name('apps-permission');
+  Route::get('permissions', [App\Http\Controllers\PermissionController::class, 'index'])->name('apps-permission')->middleware('permission:permission.index');
   Route::get('permission-data',[\App\Http\Controllers\PermissionController::class, 'getDataPermission'])->name('apps-permission-data');
   //End Permission Route
   
   //Roles Route
-  Route::get('roles', [App\Http\Controllers\RoleController::class, 'index'])->name('apps-roles');
+  Route::get('roles', [App\Http\Controllers\RoleController::class, 'index'])->name('apps-roles')->middleware('permission:role.index');
   Route::get('role-data',[\App\Http\Controllers\RoleController::class, 'getDataRole'])->name('apps-role-data');
-  Route::post('roles',[\App\Http\Controllers\RoleController::class, 'store'])->name('apps-role-store');
-  Route::delete('roles/{id}',[\App\Http\Controllers\RoleController::class, 'destroy'])->name('apps-role-destroy');
-  Route::get('roles/{id}/edit',[\App\Http\Controllers\RoleController::class, 'edit'])->name('apps-role-edit');
-  Route::patch('roles/{id}',[\App\Http\Controllers\RoleController::class, 'update'])->name('apps-role-update');
+  Route::post('roles',[\App\Http\Controllers\RoleController::class, 'store'])->name('apps-role-store')->middleware('permission:role.add');
+  Route::delete('roles/{id}',[\App\Http\Controllers\RoleController::class, 'destroy'])->name('apps-role-destroy')->middleware('permission:role.delete');
+  Route::get('roles/{id}/edit',[\App\Http\Controllers\RoleController::class, 'edit'])->name('apps-role-edit')->middleware('permission:role.edit');
+  Route::patch('roles/{id}',[\App\Http\Controllers\RoleController::class, 'update'])->name('apps-role-update')->middleware('permission:role.update');
   //End Roles Route
 
   //Pengguna Route
-  Route::get('pengguna', [App\Http\Controllers\PenggunaController::class, 'index'])->name('apps-pengguna');
+  Route::get('pengguna', [App\Http\Controllers\PenggunaController::class, 'index'])->name('apps-pengguna')->middleware('permission:user.index');
   Route::get('pengguna-data',[\App\Http\Controllers\PenggunaController::class, 'getDataPengguna'])->name('apps-pengguna-data');
-  Route::post('pengguna',[\App\Http\Controllers\PenggunaController::class, 'store'])->name('apps-pengguna-store');
-  Route::get('pengguna/{id}/edit',[\App\Http\Controllers\PenggunaController::class, 'edit'])->name('apps-pengguna-edit');
-  Route::delete('pengguna/{id}',[\App\Http\Controllers\PenggunaController::class, 'destroy'])->name('apps-pengguna-destroy');
-  Route::patch('pengguna/{id}',[\App\Http\Controllers\PenggunaController::class, 'update'])->name('apps-pengguna-update');
+  Route::post('pengguna',[\App\Http\Controllers\PenggunaController::class, 'store'])->name('apps-pengguna-store')->middleware('permission:user.add');
+  Route::get('pengguna/{id}/edit',[\App\Http\Controllers\PenggunaController::class, 'edit'])->name('apps-pengguna-edit')->middleware('permission:user.edit');
+  Route::delete('pengguna/{id}',[\App\Http\Controllers\PenggunaController::class, 'destroy'])->name('apps-pengguna-destroy')->middleware('permission:user.delete');
+  Route::patch('pengguna/{id}',[\App\Http\Controllers\PenggunaController::class, 'update'])->name('apps-pengguna-update')->middleware('permission:user.update');
 
   //Dosen Luar Biasa
-  Route::get('dosen', [App\Http\Controllers\DosenlbController::class, 'index'])->name('apps-dosen');
-  Route::post('dosen',[\App\Http\Controllers\DosenlbController::class, 'store'])->name('apps-dosen-store');
+  Route::get('dosen', [App\Http\Controllers\DosenlbController::class, 'index'])->name('apps-dosen')->middleware('permission:dosen.index');
+  Route::post('dosen',[\App\Http\Controllers\DosenlbController::class, 'store'])->name('apps-dosen-store')->middleware('permission:dosen.add');
   Route::get('dosen-data',[\App\Http\Controllers\DosenlbController::class, 'getDataDosen'])->name('apps-dosen-data');
-  Route::get('dosen/{id}',[\App\Http\Controllers\DosenlbController::class, 'show'])->name('apps-dosen-show');
-  Route::delete('dosen/{id}',[\App\Http\Controllers\DosenlbController::class, 'destroy'])->name('apps-dosen-destroy');
-  Route::get('dosen/{id}/edit',[\App\Http\Controllers\DosenlbController::class, 'edit'])->name('apps-dosen-edit');
-  Route::patch('dosen/{id}',[\App\Http\Controllers\DosenlbController::class, 'update'])->name('apps-dosen-update');
+  Route::get('dosen/{id}',[\App\Http\Controllers\DosenlbController::class, 'show'])->name('apps-dosen-show')->middleware('permission:dosen.detail');
+  Route::delete('dosen/{id}',[\App\Http\Controllers\DosenlbController::class, 'destroy'])->name('apps-dosen-destroy')->middleware('permission:dosen.delete');
+  Route::get('dosen/{id}/edit',[\App\Http\Controllers\DosenlbController::class, 'edit'])->name('apps-dosen-edit')->middleware('permission:dosen.edit');
+  Route::patch('dosen/{id}',[\App\Http\Controllers\DosenlbController::class, 'update'])->name('apps-dosen-update')->middleware('permission:dosen.update');
 
   //Pangkat
-  Route::get('pangkat', [App\Http\Controllers\PangkatController::class, 'index'])->name('apps-pangkat');
-  Route::post('pangkat',[\App\Http\Controllers\PangkatController::class, 'store'])->name('apps-pangkat-store');
+  Route::get('pangkat', [App\Http\Controllers\PangkatController::class, 'index'])->name('apps-pangkat')->middleware('permission:pangkat.index');
+  Route::post('pangkat',[\App\Http\Controllers\PangkatController::class, 'store'])->name('apps-pangkat-store')->middleware('permission:pangkat.add');
   Route::get('pangkat-data',[\App\Http\Controllers\PangkatController::class, 'getDataPangkat'])->name('apps-pangkat-data');
-  Route::get('pangkat/{id}',[\App\Http\Controllers\PangkatController::class, 'show'])->name('apps-pangkat-show');
-  Route::delete('pangkat/{id}',[\App\Http\Controllers\PangkatController::class, 'destroy'])->name('apps-pangkat-destroy');
-  Route::get('pangkat/{id}/edit',[\App\Http\Controllers\PangkatController::class, 'edit'])->name('apps-pangkat-edit');
-  Route::patch('pangkat/{id}',[\App\Http\Controllers\PangkatController::class, 'update'])->name('apps-pangkat-update');
+  Route::delete('pangkat/{id}',[\App\Http\Controllers\PangkatController::class, 'destroy'])->name('apps-pangkat-destroy')->middleware('permission:pangkat.delete');
+  Route::get('pangkat/{id}/edit',[\App\Http\Controllers\PangkatController::class, 'edit'])->name('apps-pangkat-edit')->middleware('permission:pangkat.edit');
+  Route::patch('pangkat/{id}',[\App\Http\Controllers\PangkatController::class, 'update'])->name('apps-pangkat-update')->middleware('permission:pangkat.update');
 
   //Fungsional
-  Route::get('fungsional', [App\Http\Controllers\FungsionalController::class, 'index'])->name('apps-fungsional');
-  Route::post('fungsional',[\App\Http\Controllers\FungsionalController::class, 'store'])->name('apps-fungsional-store');
+  Route::get('fungsional', [App\Http\Controllers\FungsionalController::class, 'index'])->name('apps-fungsional')->middleware('permission:jabatan.index');
+  Route::post('fungsional',[\App\Http\Controllers\FungsionalController::class, 'store'])->name('apps-fungsional-store')->middleware('permission:jabatan.add');
   Route::get('fungsional-data',[\App\Http\Controllers\FungsionalController::class, 'getDataFungsional'])->name('apps-fungsional-data');
-  Route::get('fungsional/{id}',[\App\Http\Controllers\FungsionalController::class, 'show'])->name('apps-fungsional-show');
-  Route::delete('fungsional/{id}',[\App\Http\Controllers\FungsionalController::class, 'destroy'])->name('apps-fungsional-destroy');
-  Route::get('fungsional/{id}/edit',[\App\Http\Controllers\FungsionalController::class, 'edit'])->name('apps-fungsional-edit');
-  Route::patch('fungsional/{id}',[\App\Http\Controllers\FungsionalController::class, 'update'])->name('apps-fungsional-update');
+  Route::delete('fungsional/{id}',[\App\Http\Controllers\FungsionalController::class, 'destroy'])->name('apps-fungsional-destroy')->middleware('permission:jabatan.delete');
+  Route::get('fungsional/{id}/edit',[\App\Http\Controllers\FungsionalController::class, 'edit'])->name('apps-fungsional-edit')->middleware('permission:jabatan.edit');
+  Route::patch('fungsional/{id}',[\App\Http\Controllers\FungsionalController::class, 'update'])->name('apps-fungsional-update')->middleware('permission:jabatan.edit');
 
   //Perangkat
-  Route::get('perangkat', [App\Http\Controllers\PerangkatController::class, 'index'])->name('apps-perangkat');
+  Route::get('perangkat', [App\Http\Controllers\PerangkatController::class, 'index'])->name('apps-perangkat')->middleware('permission:perangkat.index');
   Route::get('perangkat-data',[\App\Http\Controllers\PerangkatController::class, 'getDataPerangkat'])->name('apps-perangkat-data');
-  Route::get('perangkat/{id}',[\App\Http\Controllers\PerangkatController::class, 'show'])->name('apps-perangkat-show');
-  Route::get('perangkat/{id}/edit',[\App\Http\Controllers\PerangkatController::class, 'edit'])->name('apps-perangkat-edit');
-  Route::post('perangkat',[\App\Http\Controllers\PerangkatController::class, 'store'])->name('apps-perangkat-store');
+  Route::get('perangkat/{id}',[\App\Http\Controllers\PerangkatController::class, 'show'])->name('apps-perangkat-show')->middleware('permission:perangkat.detail');
+  Route::get('perangkat/{id}/edit',[\App\Http\Controllers\PerangkatController::class, 'edit'])->name('apps-perangkat-edit')->middleware('permission:perangkat.edit');
+  Route::post('perangkat',[\App\Http\Controllers\PerangkatController::class, 'store'])->name('apps-perangkat-store')->middleware('permission:perangkat.add');
   // Route::patch('semester/{id}',[\App\Http\Controllers\SemesterController::class, 'update'])->name('apps-semester-update');
 
   //Semester
-  Route::get('semester', [App\Http\Controllers\SemesterController::class, 'index'])->name('apps-semester');
+  Route::get('semester', [App\Http\Controllers\SemesterController::class, 'index'])->name('apps-semester')->middleware('permission:semester.index');
   Route::get('semester-data',[\App\Http\Controllers\SemesterController::class, 'getDataSemester'])->name('apps-semester-data');
-  Route::delete('semester',[\App\Http\Controllers\SemesterController::class, 'destroy'])->name('apps-semester-destroy');
-  Route::post('semester',[\App\Http\Controllers\SemesterController::class, 'store'])->name('apps-semester-store');
-  Route::patch('semester/{id}',[\App\Http\Controllers\SemesterController::class, 'update'])->name('apps-semester-update');
+  Route::delete('semester',[\App\Http\Controllers\SemesterController::class, 'destroy'])->name('apps-semester-destroy')->middleware('permission:semester.delete');
+  Route::post('semester',[\App\Http\Controllers\SemesterController::class, 'store'])->name('apps-semester-store')->middleware('permission:semester.add');
+  Route::patch('semester/{id}',[\App\Http\Controllers\SemesterController::class, 'update'])->name('apps-semester-update')->middleware('permission:semester.update');
 
   //Setting Vakasi
-  Route::get('setting', [App\Http\Controllers\SettingController::class, 'index'])->name('apps-setting');
+  Route::get('setting', [App\Http\Controllers\SettingController::class, 'index'])->name('apps-setting')->middleware('permission:setting.index');
   Route::get('setting-data',[\App\Http\Controllers\SettingController::class, 'getDataSetting'])->name('apps-setting-data');
-  Route::post('setting',[\App\Http\Controllers\SettingController::class, 'store'])->name('apps-setting-store');
-  Route::get('setting/{id}/edit',[\App\Http\Controllers\SettingController::class, 'edit'])->name('apps-setting-edit');
-  Route::patch('setting/{id}',[\App\Http\Controllers\SettingController::class, 'update'])->name('apps-setting-update');
-  Route::delete('setting/{id}',[\App\Http\Controllers\SettingController::class, 'destroy'])->name('apps-setting-destroy');
+  Route::post('setting',[\App\Http\Controllers\SettingController::class, 'store'])->name('apps-setting-store')->middleware('permission:setting.add');
+  Route::get('setting/{id}/edit',[\App\Http\Controllers\SettingController::class, 'edit'])->name('apps-setting-edit')->middleware('permission:setting.edit');
+  Route::patch('setting/{id}',[\App\Http\Controllers\SettingController::class, 'update'])->name('apps-setting-update')->middleware('permission:setting.update');
+  Route::delete('setting/{id}',[\App\Http\Controllers\SettingController::class, 'destroy'])->name('apps-setting-destroy')->middleware('permission:setting.delete');
+  
 
   //Vakasi
-  Route::get('vakasi', [App\Http\Controllers\VakasiController::class, 'index'])->name('apps-vakasi');
-  Route::post('vakasi',[\App\Http\Controllers\VakasiController::class, 'store'])->name('apps-vakasi-store');
+  Route::get('vakasi', [App\Http\Controllers\VakasiController::class, 'index'])->name('apps-vakasi')->middleware('permission:vakasi.index');
+  Route::post('vakasi',[\App\Http\Controllers\VakasiController::class, 'store'])->name('apps-vakasi-store')->middleware('permission:vakasi.add');
+  Route::get('vakasi-data',[\App\Http\Controllers\VakasiController::class, 'getDataVakasi'])->name('apps-vakasi-data');
+  Route::get('vakasi/{id}',[\App\Http\Controllers\VakasiController::class, 'show'])->name('apps-vakasi-show')->middleware('permission:vakasi.detail');
 
   //Vakasi Detail
+  Route::get('vakasi-detail/{id}',[\App\Http\Controllers\VakasiDetailController::class, 'index'])->name('apps-vakasi-detail');
   Route::post('vakasi-detail',[\App\Http\Controllers\VakasiDetailController::class, 'store'])->name('apps-vakasi-detail-store');
-
+  Route::post('vakasi-detail/vakasi-amprah-print',[\App\Http\Controllers\VakasiDetailController::class,'printAmprah'])->name('apps-vakasi-detail-print');
+  Route::post('vakasi-detail/vakasi-soal-print',[\App\Http\Controllers\VakasiDetailController::class,'printBuatSoal'])->name('apps-vakasi-detail-soal-print');
+  Route::post('vakasi-detail/vakasi-pengawas-ujian',[\App\Http\Controllers\VakasiDetailController::class,'printPengawasUjian'])->name('apps-vakasi-detail-soal-print');
+  Route::post('vakasi-detail/vakasi-pengoreksi-ujian',[\App\Http\Controllers\VakasiDetailController::class,'printPemeriksaUjian'])->name('apps-vakasi-detail-koreksi-print');
 
 });
 
@@ -263,6 +273,7 @@ Route::group(['prefix' => 'page'], function () {
 /* Route Pages */
 Route::get('/error', 'MiscellaneousController@error')->name('error');
 Route::get('/405', 'MiscellaneousController@methodNotAllowed')->name('405');
+Route::get('/403', 'MiscellaneousController@not_authorized')->name('403');
 
 /* Route Authentication Pages */
 Route::group(['prefix' => 'auth'], function () {

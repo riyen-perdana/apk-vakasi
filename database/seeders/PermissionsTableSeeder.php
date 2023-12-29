@@ -14,54 +14,81 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
-        //permission dashboard
+
+        //permission Dashboard Modul
         Permission::create(['name' => 'dashboard.index', 'guard_name' => 'web']);
-        Permission::create(['name' => 'dashboard.sales_chart', 'guard_name' => 'web']);
-        Permission::create(['name' => 'dashboard.sales_today', 'guard_name' => 'web']);
-        Permission::create(['name' => 'dashboard.profits_today', 'guard_name' => 'web']);
-        Permission::create(['name' => 'dashboard.best_selling_product', 'guard_name' => 'web']);
-        Permission::create(['name' => 'dashboard.product_stock', 'guard_name' => 'web']);
 
-        //permission users
-        Permission::create(['name' => 'users.index', 'guard_name' => 'web']);
-        Permission::create(['name' => 'users.create', 'guard_name' => 'web']);
-        Permission::create(['name' => 'users.edit', 'guard_name' => 'web']);
-        Permission::create(['name' => 'users.delete', 'guard_name' => 'web']);
+        //Permission Permission Modul
+        Permission::create(['name' => 'permission.index', 'guard_name' => 'web']);
 
-        //permission roles
-        Permission::create(['name' => 'roles.index', 'guard_name' => 'web']);
-        Permission::create(['name' => 'roles.create', 'guard_name' => 'web']);
-        Permission::create(['name' => 'roles.edit', 'guard_name' => 'web']);
-        Permission::create(['name' => 'roles.delete', 'guard_name' => 'web']);
+        //Permission Role Modul
+        Permission::create(['name' => 'role.index', 'guard_name' => 'web']);
+        Permission::create(['name' => 'role.add', 'guard_name' => 'web']);
+        Permission::create(['name' => 'role.edit', 'guard_name' => 'web']);
+        Permission::create(['name' => 'role.update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'role.delete', 'guard_name' => 'web']);
+        
+        //Permission Role User
+        Permission::create(['name' => 'user.index', 'guard_name' => 'web']);
+        Permission::create(['name' => 'user.add', 'guard_name' => 'web']);
+        Permission::create(['name' => 'user.edit', 'guard_name' => 'web']);
+        Permission::create(['name' => 'user.update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'user.delete', 'guard_name' => 'web']);
 
-        //permission permissions
-        Permission::create(['name' => 'permissions.index', 'guard_name' => 'web']);
-
-        //permission categories
-        Permission::create(['name' => 'categories.index', 'guard_name' => 'web']);
-        Permission::create(['name' => 'categories.create', 'guard_name' => 'web']);
-        Permission::create(['name' => 'categories.edit', 'guard_name' => 'web']);
-        Permission::create(['name' => 'categories.delete', 'guard_name' => 'web']);
-
-        //permission products
-        Permission::create(['name' => 'products.index', 'guard_name' => 'web']);
-        Permission::create(['name' => 'products.create', 'guard_name' => 'web']);
-        Permission::create(['name' => 'products.edit', 'guard_name' => 'web']);
-        Permission::create(['name' => 'products.delete', 'guard_name' => 'web']);
-
-        //permission customers
-        Permission::create(['name' => 'customers.index', 'guard_name' => 'web']);
-        Permission::create(['name' => 'customers.create', 'guard_name' => 'web']);
-        Permission::create(['name' => 'customers.edit', 'guard_name' => 'web']);
-        Permission::create(['name' => 'customers.delete', 'guard_name' => 'web']);
-
-        //permission transactions
-        Permission::create(['name' => 'transactions.index', 'guard_name' => 'web']);
-
-        //permissions sales
-        Permission::create(['name' => 'sales.index', 'guard_name' => 'web']);
-
-        //permissions profites
-        Permission::create(['name' => 'profits.index', 'guard_name' => 'web']);
+        //Permission Perangkat Modul
+        Permission::create(['name' => 'perangkat.index', 'guard_name' => 'web']);
+        Permission::create(['name' => 'perangkat.add', 'guard_name' => 'web']);
+        Permission::create(['name' => 'perangkat.edit', 'guard_name' => 'web']);
+        Permission::create(['name' => 'perangkat.update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'perangkat.delete', 'guard_name' => 'web']);
+        Permission::create(['name' => 'perangkat.detail', 'guard_name' => 'web']);
+        
+        //Permission Pangkat Modul
+        Permission::create(['name' => 'pangkat.index', 'guard_name' => 'web']);
+        Permission::create(['name' => 'pangkat.add', 'guard_name' => 'web']);
+        Permission::create(['name' => 'pangkat.edit', 'guard_name' => 'web']);
+        Permission::create(['name' => 'pangkat.update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'pangkat.delete', 'guard_name' => 'web']);
+        Permission::create(['name' => 'pangkat.detail', 'guard_name' => 'web']);
+        
+        //Permission Jabatan Modul
+        Permission::create(['name' => 'jabatan.index', 'guard_name' => 'web']);
+        Permission::create(['name' => 'jabatan.add', 'guard_name' => 'web']);
+        Permission::create(['name' => 'jabatan.edit', 'guard_name' => 'web']);
+        Permission::create(['name' => 'jabatan.update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'jabatan.delete', 'guard_name' => 'web']);
+        
+        //Permission Dosen Modul
+        Permission::create(['name' => 'dosen.index', 'guard_name' => 'web']);
+        Permission::create(['name' => 'dosen.add', 'guard_name' => 'web']);
+        Permission::create(['name' => 'dosen.edit', 'guard_name' => 'web']);
+        Permission::create(['name' => 'dosen.update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'dosen.delete', 'guard_name' => 'web']);
+        Permission::create(['name' => 'dosen.detail', 'guard_name' => 'web']);
+        
+        //Permission Semester Modul
+        Permission::create(['name' => 'semester.index', 'guard_name' => 'web']);
+        Permission::create(['name' => 'semester.import', 'guard_name' => 'web']);
+        Permission::create(['name' => 'semester.edit', 'guard_name' => 'web']);
+        
+        //Permission Setting Modul
+        Permission::create(['name' => 'setting.index', 'guard_name' => 'web']);
+        Permission::create(['name' => 'setting.add', 'guard_name' => 'web']);
+        Permission::create(['name' => 'setting.edit', 'guard_name' => 'web']);
+        Permission::create(['name' => 'setting.update', 'guard_name' => 'web']);
+        Permission::create(['name' => 'setting.delete', 'guard_name' => 'web']);
+        
+        //Permission Vakasi Modul
+        Permission::create(['name' => 'vakasi.index', 'guard_name' => 'web']);
+        Permission::create(['name' => 'vakasi.proses', 'guard_name' => 'web']);
+        Permission::create(['name' => 'vakasi.detail', 'guard_name' => 'web']);
+        Permission::create(['name' => 'vakasi.view', 'guard_name' => 'web']);
+        
+        //Permission Vakasi Detail Modul
+        Permission::create(['name' => 'vakasi-detail.index', 'guard_name' => 'web']);
+        Permission::create(['name' => 'vakasi-detail.amprah-print', 'guard_name' => 'web']);
+        Permission::create(['name' => 'vakasi-detail.soal-print', 'guard_name' => 'web']);
+        Permission::create(['name' => 'vakasi-detail.pengawas-print', 'guard_name' => 'web']);
+        Permission::create(['name' => 'vakasi-detail.pemeriksa-print', 'guard_name' => 'web']);
     }
 }

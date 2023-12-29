@@ -282,4 +282,9 @@ class DosenlbController extends Controller
 
         return redirect()->route('405');
     }
+
+    public function testing()
+    {
+        return response()->json('haiiiii',200);
+    }
 }

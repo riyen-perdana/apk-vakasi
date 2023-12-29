@@ -36,7 +36,7 @@ class Vakasi extends Model
 
     public function semester()
     {
-        return $this->hasOne('App\Semester','id_smt');
+        return $this->belongsTo('App\Semester','id_smt');
     }
 
 }
